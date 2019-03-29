@@ -220,7 +220,7 @@ while(have_posts()) {
                 
                 //$fotoConfirmacion = get_sub_field('foto_confirmacion_vuelo'); ?>
 
-                <div class="cbp-item graphic bg-white shadow rounded p-2">
+                <div class="cbp-item p-2">
                   <div class="cbp-caption">
                     <div class="cbp-caption-defaultWrap">
                     <?php 
@@ -352,7 +352,7 @@ while(have_posts()) {
                 if($product_terms):
                 foreach( $product_terms as $terms ):
                   //var_dump($terms);?>
-                  <div class="btn-group" id="navbar-pais">
+                  <div class="btn-group py-1" id="navbar-pais">
                     <button type="button" class="btn btn-outline-primary btn-wide">
                       <a class="h6" href="<?php echo '#'.get_the_title($terms->ID).$fechas;?>"><?php echo get_the_title($terms->ID);?>
                         <div class="">
@@ -404,10 +404,10 @@ while(have_posts()) {
 
               if($vueloItiViaje):
                 foreach( $vueloItiViaje as $vueloIti ):?>
-                <div class="container py-3">
+                <div class="container py-1">
                   <div class="card-mb card-sm-columns card-sm-1-count">
                     
-                    <div class="pt-3 card border-1 mt-3 p-3">
+                    <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-plane"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($vueloIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($vueloIti->ID);?></h4></a>
@@ -423,16 +423,16 @@ while(have_posts()) {
               
               if($hotelesItinerario):  
                 foreach( $hotelesItinerario as $hotelesIti ):?>
-                <div class="container py-3">
+                <div class="container py-2">
                   <div class="card-mb card-sm-columns card-sm-2-count"> 
                     <img class="bg-white shadow rounded p-2 card-img-top" src="<?php $thumb13 = wp_get_attachment_image_src( get_post_thumbnail_id($hotelesIti->ID), 'homeDestinoCover' );
                     echo $thumb13['0'];?>" alt="Image Description">
-                    <div class="pt-3 card border-1 mt-3 p-3">
+                    <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-bed"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($hotelesIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($hotelesIti->ID);?></h4></a>
                       
-                      <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($hotelesIti->ID);?>">
+                      <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($hotelesIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
                       </a>
@@ -445,11 +445,11 @@ while(have_posts()) {
 
               if($toursItinerario):  
                 foreach( $toursItinerario as $toursIti ):?>
-                <div class="container py-3">
+                <div class="container py-2">
                   <div class="card-mb card-sm-columns card-sm-2-count"> 
                     <img class="bg-white shadow rounded p-2 card-img-top" src="<?php $thumb13 = wp_get_attachment_image_src( get_post_thumbnail_id($toursIti->ID), 'homeDestinoCover' );
                     echo $thumb13['0'];?>" alt="Image Description">
-                    <div class="pt-3 card border-1 mt-3 p-3">
+                    <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-map-marked-alt"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($toursIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($toursIti->ID);?></h4></a>
@@ -467,11 +467,11 @@ while(have_posts()) {
 
               if($lugaresItinerario):  
                 foreach( $lugaresItinerario as $lugaresIti ):?>
-                <div class="container py-3">
+                <div class="container py-2">
                   <div class="card-mb card-sm-columns card-sm-2-count"> 
                     <img class="bg-white shadow rounded p-2 card-img-top" src="<?php $thumb13 = wp_get_attachment_image_src( get_post_thumbnail_id($lugaresIti->ID), 'homeDestinoCover' );
                     echo $thumb13['0'];?>" alt="Image Description">
-                    <div class="pt-3 card border-1 mt-3 p-3">
+                    <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-map-marker-alt"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($lugaresIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($lugaresIti->ID);?></h4></a>
@@ -489,10 +489,10 @@ while(have_posts()) {
 
               if($transladosItinerario):  
                 foreach( $transladosItinerario as $transladosIti ):?>
-                <div class="container py-3">
+                <div class="container py-1">
                   <div class="card-mb card-sm-columns card-sm-1-count"> 
                     
-                    <div class="pt-3 card border-1 mt-3 p-3">
+                    <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-bus"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($transladosIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($transladosIti->ID);?></h4></a>
