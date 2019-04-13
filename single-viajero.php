@@ -1,5 +1,5 @@
 <?php
-//acf_form_head();
+
 get_header();
 
 if (is_user_logged_in()) {
@@ -25,7 +25,7 @@ while(have_posts()) {
     	<!-- End Author -->
     	<!-- Title -->
     	<div class="mb-7">
-      	<h1 class="display-4 font-size-48--md-down text-muted mb-4">Hola, <?php the_title();?></h1>
+      	<h2 class="text-muted font-weight-medium">Hola, <?php the_title();?></h2>
       </div>
     	<!-- End Title -->
     </div>
@@ -50,12 +50,6 @@ while(have_posts()) {
      href="#tours">
      <h3><i class="fas fa-map-marked-alt"></i></h3>
       Tours
-    </a>
-    <a class="nav-link h5 tab-modern__nav-link mb-4" 
-     id="h-tab-mapa-tab" 
-     href="#mapa">
-     <h3><i class="fas fa-globe-americas"></i></h3>
-      Mapa de ruta
     </a>
     <a class="nav-link h5 tab-modern__nav-link mb-4" 
       id="h-tab-itinerario-tab" 
@@ -217,8 +211,7 @@ while(have_posts()) {
                 while( have_rows('tours_itinerario') ): the_row();
 
                 $toursViaje = get_sub_field('tour_del_viajero');
-                
-                //$fotoConfirmacion = get_sub_field('foto_confirmacion_vuelo'); ?>
+                ?>
 
                 <div class="cbp-item p-2">
                   <div class="cbp-caption">
@@ -230,9 +223,9 @@ while(have_posts()) {
                         echo $thumb12['0'];?>" alt="Image Description">
                     </div>
                   </div>
-                  <div class="p-4">
+                  <div class="pt-2">
                     <a href="<?php echo get_the_permalink($tour->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($tour->ID);?></h4></a>
-                    <p><?php echo get_the_excerpt($tour->ID);?></p>
+                    
                   </div>
                   <?php 
                   endforeach;
@@ -250,84 +243,7 @@ while(have_posts()) {
     </div>
     <!--  end tours -->
 
-    <!--  mapa -->
-    <div class="" id="mapa">
-      <div class="row align-items-lg-center">
-        <div class="col-md-12 order-md-2 mb-5 mb-md-0">
-          <div class="mb-4">
-            <h2><i class="fas fa-globe-americas"></i></h2>
-            <hr class="my-2">
-            <h2 class="h3">Mapa de ruta</h2>
-            <style>
-              .embed-container { 
-                position: relative; 
-                padding-bottom: 56.25%;
-                overflow: hidden;
-                max-width: 100%;
-                height: auto;
-              } 
-
-              .embed-container iframe,
-              .embed-container object,
-              .embed-container embed { 
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-              }
-            </style>
-          
-          <h6>Mis mapas:</h6>
-          <?php
-
-          if( have_rows('mapas_viajero') ): 
-          while( have_rows('mapas_viajero') ): the_row();
-
-            $nombreMapa = get_sub_field('nombre_de_mapa_iti');
-            $embedMapa = get_sub_field('embed_mapa');?>
-              
-            <div class="btn-group py-2" id="navbar-pais">
-              <button type="button" class="btn btn-outline-primary btn-wide">
-                <a class="h6" href="<?php echo '#'.$nombreMapa;?>"><?php echo $nombreMapa;?>
-                </a>
-              </button>
-            </div>
-       
-             <?php 
-           endwhile;
-          endif; 
-          ?>
-          
-          <?php 
-
-          if( have_rows('mapas_viajero') ): 
-          while( have_rows('mapas_viajero') ): the_row();
-
-            $nombreMapa = get_sub_field('nombre_de_mapa_iti');
-            $embedMapa = get_sub_field('embed_mapa');
-
-              if( $embedMapa ): 
-
-                echo '<div id ="'.$nombreMapa.'">';
-                  echo '<div class="container mb-5 embed-container bg-white shadow">';
-                    echo '<iframe src= "'.$embedMapa.'" >';
-                    echo '</iframe>';
-                  echo '</div>';
-                echo '</div>';
-
-              endif; 
-               
-          endwhile;
-          endif; 
-
-          ?>
-          </div>
-        </div>
-      </div> 
-    </div>         
-    <!-- end mapa -->
- 
+  
     <!-- intinerario por dias -->
     <div class="" id="itinerario">
       <div class="row align-items-lg-center">
@@ -424,9 +340,8 @@ while(have_posts()) {
               if($hotelesItinerario):  
                 foreach( $hotelesItinerario as $hotelesIti ):?>
                 <div class="container py-2">
-                  <div class="card-mb card-sm-columns card-sm-2-count"> 
-                    <img class="bg-white shadow rounded p-2 card-img-top" src="<?php $thumb13 = wp_get_attachment_image_src( get_post_thumbnail_id($hotelesIti->ID), 'homeDestinoCover' );
-                    echo $thumb13['0'];?>" alt="Image Description">
+                  <div class="card-mb card-sm-columns card-sm-1-count"> 
+                    
                     <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-bed"></i></h3>
                       <hr class="my-2">
@@ -446,14 +361,13 @@ while(have_posts()) {
               if($toursItinerario):  
                 foreach( $toursItinerario as $toursIti ):?>
                 <div class="container py-2">
-                  <div class="card-mb card-sm-columns card-sm-2-count"> 
-                    <img class="bg-white shadow rounded p-2 card-img-top" src="<?php $thumb13 = wp_get_attachment_image_src( get_post_thumbnail_id($toursIti->ID), 'homeDestinoCover' );
-                    echo $thumb13['0'];?>" alt="Image Description">
+                  <div class="card-mb card-sm-columns card-sm-1-count"> 
+                    
                     <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-map-marked-alt"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($toursIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($toursIti->ID);?></h4></a>
-                      <p><?php echo get_the_excerpt($toursIti->ID);?></p>
+                      
                       <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($toursIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
@@ -468,14 +382,13 @@ while(have_posts()) {
               if($lugaresItinerario):  
                 foreach( $lugaresItinerario as $lugaresIti ):?>
                 <div class="container py-2">
-                  <div class="card-mb card-sm-columns card-sm-2-count"> 
-                    <img class="bg-white shadow rounded p-2 card-img-top" src="<?php $thumb13 = wp_get_attachment_image_src( get_post_thumbnail_id($lugaresIti->ID), 'homeDestinoCover' );
-                    echo $thumb13['0'];?>" alt="Image Description">
+                  <div class="card-mb card-sm-columns card-sm-1-count"> 
+                    
                     <div class="pt-3 card border-1 mt-1 p-3">
                       <h3><i class="fas fa-map-marker-alt"></i></h3>
                       <hr class="my-2">
                       <a href="<?php echo get_the_permalink($lugaresIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($lugaresIti->ID);?></h4></a>
-                      <p><?php echo get_the_excerpt($lugaresIti->ID);?></p>
+                     
                       <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($lugaresIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>

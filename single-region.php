@@ -12,13 +12,13 @@ while(have_posts()) {
       <!-- Info -->
       <div class="container text-center space-1">
         <div class="w-lg-75 mx-lg-auto">
-          <h1 class="text-white font-weight-medium"><?php the_title();?></h1>
+          <h2 class="text-white font-weight-medium"><?php the_title();?></h2>
         </div>
 
         <?php $precioDestinoRegional = get_field('precio_destino_regional'); ?>
         <div class="w-md-75 w-lg-50 mx-md-auto">
           <div class="mb-5">
-            <h2 class="h2 text-white">Viaja desde <?php echo $precioDestinoRegional ?> x persona</h2>
+            <h3 class="text-white">Viaja desde <?php echo $precioDestinoRegional ?> x persona</h3>
             <hr class="my-2">
             <h6 class="d-block text-white">Los precios están sujetos a cambios según las fechas, la disponibilidad y tus elecciones.</h6>
           </div>
@@ -48,8 +48,7 @@ while(have_posts()) {
     <div class="container">
       <div class="row align-self-lg-center space-2">
         <div class="col-lg-12">
-          <!-- Title -->
-          <h3><?php the_title();?></h3>   
+          <!-- Title -->   
           <p><?php the_content();?></p>
           <!-- End Title -->
         </div>
@@ -96,7 +95,7 @@ while(have_posts()) {
       //$preciosDestino = get_field('precio_destino');
       ?>
   
-  <div class="container space-1 space-1--lg">         
+  <div class="container my-5">         
     <div class="row align-items-lg-center">          
       <div class="col-md-6 order-md-2 mb-5 mb-md-0">
         <div class="mb-2">
@@ -133,15 +132,11 @@ while(have_posts()) {
   <!-- end loop paises en regiones -->
 
   <!-- Razones región -->
-  <div class="container text-center space-2 space-0--lg">
-    <!-- Title -->
+  <div class="py-6" style="background-color: #ddd;">
     <div class="w-md-80 text-center mx-auto mb-5">
-      <h1 style="color: #000042;">¿Por qué viajar a <?php the_title();?>?</h1>
-      
+      <h2 style="color: #000042;">¿Por qué viajar a <?php the_title();?>?</h2>
     </div>
-  </div> 
-   
-  <div class="p-5" style="background-color: #ddd;">
+    <hr class="py-3">
     <div class="col-md-12">
       <!-- Slick Carousel - Testimonials -->
       <div class="container js-slick-carousel u-slick"
@@ -153,30 +148,46 @@ while(have_posts()) {
            data-numbered-pagination="#slickPaging">
       
       <?php
+
       if( have_rows('razones_destino') ):
         while( have_rows('razones_destino') ): the_row();
           
           $titulo = get_sub_field('titulo_razon_destino');
           $contenido = get_sub_field('texto_de_razon_destino');
           $imagen = get_sub_field('icono');
+          $imagenRazon = get_sub_field('icono_contenido');
       ?>     
 
         <div class="js-slide">
+          <div class="row align-items-lg-center">
+            <div class="col-md-10 order-md-2 mb-5 mb-md-0">
+              <div class="mb-4">
+                <!-- Title -->
 
-          <?php if( $imagen ): ?>
-          <div class="">
-            <img class="rounded-circle mr-3 mx-auto d-block" src="<?php echo $imagen['url'];?>" alt="<?php echo $imagen['alt'];?>">
+                <?php if( $titulo ): ?>
+                <h3>
+                  <?php if( $imagen ): ?>
+                  <span style="padding-left: 10px">
+                    <img style="float: left;" class="u-avatar rounded-circle mx-1" src="<?php echo $imagen['url'];?>" alt="<?php echo $imagen['alt'];?>" style="height: 60px; width: 60px">
+                  </span>
+                  <?php echo $titulo;?>
+                  <?php endif; ?>
+                </h3>
+                <?php endif; ?>
+
+                <?php if( $contenido ): ?>
+                <p><?php echo $contenido;?></p>
+                <?php endif; ?>
+
+                <!-- End Title -->
+              </div>
+            </div>
+            <div class="col-md-2 order-md-1">
+              <div class="">
+                <img class="" src="<?php echo $imagenRazon['url'];?>" alt="<?php echo $imagenRazon['alt'];?>" style="display: block;margin-left: auto; margin-right: auto;">
+              </div>
+            </div>
           </div>
-          <?php endif; ?>
-    
-          <?php if( $titulo ): ?>
-          <h3 class="text-muted text-center"><?php echo $titulo;?></h3>
-          <?php endif; ?>
-          <hr class="my-2">
-          <?php if( $contenido ): ?>
-          <p class="lead"><?php echo $contenido;?></p>
-          <?php endif; ?>
-         
         </div>
       <?php 
       endwhile;
@@ -198,7 +209,7 @@ while(have_posts()) {
   <!-- end razones región -->
   <div class="container text-center space-1">
     <div class="w-md-80 text-center mx-auto mb-5">
-      <h1 style="color: #000042;">Rutas en <?php the_title();?></h1>
+      <h2 style="color: #000042;">Rutas</h2>
     </div>
 
     <!-- rutas regionales -->
@@ -227,65 +238,35 @@ while(have_posts()) {
       $numeroDias = get_field('numero_de_dias_ruta');
 
       ?>
-        <article class="card mb-1 bg-white shadow p-2 col-xl-4 col-md-4 col-xs-4">
-          <div class="card-body row align-items-stretch no-gutters p-0">
-            <div class="col-12">
-              <div class="p-5">
-                <span>
-                  <!-- banderas -->
-                  <?php
-                    foreach($ciudadesRegiones as $id){ 
-                    $img = get_field('bandera_paises', $id);
-                    //echo print_r($img['url']);
-                    echo '<img class="u-avatar rounded-circle mb-1" style = "width:15%; height:15%" src="'.$img['url'].'">';
-                  }?>    
-                  <!-- end banderas -->
-                </span>
-
-                <h2 class="h5 mb-3">
-                  <a href="<?php echo get_the_permalink();?>"><?php echo get_the_title();?></a>
-                </h2>
-
-                <span>
-                  <hr class="my-1">
-                  <img class="u-avatar" style = "width:25%; height:25%" src="<?php 
-                    $icon = wp_get_attachment_image_url('1534','iconsMini',true );
-                    echo $icon;
-                    ?>">
-                  <h3 style="color: #000042" class="d-block"><?php echo $numeroDias;?></h3>
-                  <h6 style="color: #000042">Dias</h6>
-                </span>
-
-                <span>
-                  <hr class="my-1">
-                  <img class="u-avatar" style = "width:25%; height:25%" src="<?php 
-                    $icon = wp_get_attachment_image_url('1535','iconsMini',true );
-                    echo $icon;
-                    ?>">
-                  <h6 style="color: #000042">Valor mínimo</h6>
-                  <h3 style="color: #000042" class="d-block"><?php echo $precioRuta;?> USD</h3>
-                  <h6 style="color: #000042">x por persona</h6>
-                </span>
-              </div>
-            </div>
+        <article class="card mb-3 img-fluid bg-white shadow">
+          <img class="card-img-top" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('blogCover');}?>" alt="<?php the_title_attribute();?>" style="height: 250px;">
+          <div class="card-body p-2">
+            <h5 class="">
+              <a href="<?php the_permalink();?>"><?php the_title();?></a>
+            </h5>
+            <hr class="my-1">
+            <p>Desde <span class="text-primary"><?php echo $precioRuta;?></span> COP / <?php echo $numeroDias;?> dias</p>
+            <a class="btn btn-outline-primary btn-block mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
           </div>
         </article>
+
        <?php } wp_reset_postdata();?>
       </div>
     </div>  
     <!-- end rutas regionales -->
 
     <!-- viaje nuevo -->
-    <div style="background-color: #000042">
+    <div style="background-color: #bbb">
       <div class="container">
         <div class="row justify-content-md-left align-items-md-left py-5">    
           <div class="col-lg-9 col-md-3">
-            <h2 class="text-white mb-1">Si tienes otro viaje en mente</h2>
-            <p class="lead text-light">Ponte en contácto con nosotros ya, sabemos como hacerlo mejor para ti.</p>
+            <p class="text-light px-3">¨Todos nuestros planes base son 100%
+          personalizables / cada elemento puedes adaptarlo según tus necesidades, intereses
+          y presupuesto, desde la duración hasta el alojamiento o las actividades¨</p>
           </div>
-          <div class="col-lg-3 col-md-3 mt-4">
+          <div class="col-lg-3 col-md-3">
             <span class="input-group-append form__append">
-              <button type="submit" class="btn btn-block btn-primary btn-wide">Contáctanos ya</button>
+              <button type="submit" class="btn btn-block btn-primary btn-wide" >Contáctanos ya</button>
             </span>
           </div>     
         </div>
@@ -298,8 +279,7 @@ while(have_posts()) {
     <div class="bg-light p-5">
       <div class="conatiner text-center mx-auto">
         <div class="w-md-80 text-center mx-auto mb-9">
-          <h1 style="color: #000042;">Temporadas</h1>
-          <hr class="my-1">
+          <h2 style="color: #000042;">Temporadas</h2>
         </div>
         <div class="row">
           <div class="col-1">
@@ -405,9 +385,9 @@ while(have_posts()) {
           
           <div class="col-md-4 mt-5">
             <div class="card text-center shadow border-0">
-              <header class="card-header p-5">
+              <header class="card-header p-3">
                 <?php if( $meses ): ?>
-                <h2 class="h5 mb-4"><?php echo $meses;?></h2>
+                <h2 class="h5 mb-1"><?php echo $meses;?></h2>
                 <?php endif; ?>
                 <span class="d-block">
                   <?php if( $tipo ): ?>
@@ -417,7 +397,7 @@ while(have_posts()) {
               </header>
               <?php if( $infoTemp ): ?>
               <div class="card-body p-5">
-                <p class="lead"><?php echo $infoTemp;?></p>
+                <p><?php echo $infoTemp;?></p>
               </div>
               <?php endif; ?>
             </div>

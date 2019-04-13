@@ -1,4 +1,6 @@
 <?php
+
+if (is_user_logged_in()){
 get_header();
 ?>
 <!-- Header Hero Section -->
@@ -12,10 +14,10 @@ get_header();
           <div class="col-lg-5 mb-7 mb-lg-0">
             <!-- Title -->
             
-            <h1 class="display-4 font-size-32--md-down text-white">Explora el mundo con nosotros</h1>
+            <h1 class="display-4 font-size-28--md-down text-white">Explora el mundo con nosotros</h1>
             <!-- <span class="d-block text-white text-uppercase mb-2">Únete al cambio</span> -->
             <!-- End Title -->
-            <div class="py-6">
+            <div class="pb-6">
               <a class="btn  btn-primary" href="">Comienza con Travelmate</a>
             </div>
           </div>
@@ -27,8 +29,8 @@ get_header();
   
 <!--  Header End Hero Section -->
 
-<div class="container text-center pt-3">
-  <h1 style="color: #000042; text-align: left;">Destinos</h1>
+<div class="container text-center pt-6">
+  <h2 style="color: #000042; text-align: left;">Destinos</h2>
 </div>
 
 <?php 
@@ -53,13 +55,13 @@ $destinosRegionales = new WP_Query(array(
       <img class="card-img-top bg-white p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('homeDestinoCover');}?>" 
       alt="<?php the_title_attribute()?>">
           
-      <div class="card-body px-5 py-3 my-3">  
+      <div class="card-body p-2">  
         <h3 class="h5">
           <a href="<?php the_permalink();?>"><?php the_title();?></a>
         </h3>
         <hr class="my-2">
         <!-- Pricing -->
-        <span class="h5 d-inline-block text-primary mb-1"><?php echo $precioDestinoRegional;?></span>
+        <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $precioDestinoRegional;?></span>
           <small class="text-secondary"> por persona</small>
         </span>
                 
@@ -92,13 +94,13 @@ $destinosRegionales = new WP_Query(array(
       <img class="card-img-top bg-white p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('homeDestinoCover');}?>" 
       alt="<?php the_title_attribute()?>">
         
-      <div class="card-body px-5 py-3 my-3">  
+      <div class="card-body p-2">  
         <h3 class="h5">
           <a href="<?php the_permalink();?>"><?php the_title();?></a>
         </h3>
         <hr class="my-2">
         <!-- Pricing -->
-        <span class="h5 d-inline-block text-primary mb-1"><?php echo $precioDestino;?></span>
+        <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $precioDestino;?></span>
           <small class="text-secondary"> por persona</small>
         </span>
         <!-- End Pricing -->
@@ -112,14 +114,15 @@ $destinosRegionales = new WP_Query(array(
 <!-- end destinations-->
 
 <!-- viaje nuevo -->
-<div class="mb-5" style="background-color: #888">
+<div style="background-color: #bbb">
   <div class="container">
-    <div class="row justify-content-md-left align-items-md-left my-5 py-5">    
+    <div class="row justify-content-md-left align-items-md-left py-5">    
       <div class="col-lg-9 col-md-3">
-        <h2 class="text-white mb-1 px-3">Si tienes otro viaje en mente</h2>
-        <p class="lead text-light px-3">Ponte en contácto con nosotros ya, sabemos como hacerlo mejor para ti.</p>
+        <p class="text-light px-3">¨Todos nuestros planes base son 100%
+      personalizables / cada elemento puedes adaptarlo según tus necesidades, intereses
+      y presupuesto, desde la duración hasta el alojamiento o las actividades¨</p>
       </div>
-      <div class="col-lg-3 col-md-3 mt-4">
+      <div class="col-lg-3 col-md-3">
         <span class="input-group-append form__append">
           <button type="submit" class="btn btn-block btn-primary btn-wide">Contáctanos ya</button>
         </span>
@@ -147,10 +150,10 @@ $resp3 = get_field('3_respuesta_a_enunciado_funcionamiento');
 
 ?>
 
-<div class="container my-5">
+<div class="container mb-5">
   <!-- Title -->
-  <div class="w-md-80 text-center mx-auto mb-9">
-    <h1 style="color: #000042;">¿Cómo funciona?</h1>
+  <div class="container text-center py-6">
+    <h2 style="color: #000042; text-align: left;">¿Cómo funciona?</h2>
   </div>
   <!-- End Title -->
   <div class="row">
@@ -242,14 +245,15 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 <!-- End tarifa -->
 
 <!-- porque nosotros -->
-<div class="container space-1 space-1--lg">
-  <div class="w-md-80 w-lg-60 text-center mx-md-auto mb-9">
+
+<div class="container text-center py-6">
+  
     <?php
     $fraseRazon = get_field('frase_razon');
      ?>
-    <h1 style="color: #000042;">¿Por qué nosotros?</h1>
-    <p><?php echo $fraseRazon;?></p>
-  </div>
+    <h2 style="color: #000042; text-align: left;">¿Por qué nosotros?</h2>
+    <p style="text-align: left;"><?php echo $fraseRazon;?></p>
+  
   <div class="container">
     <div class="row">
       <?php
@@ -263,7 +267,7 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 
           ?>
           
-      <div class="bg-white text-center border p-3 col-lg-4 my-2">
+      <div class="text-center border p-3 col-lg-3 my-2" style="background-color: #f4f2f2">
         <div class="text-center px-lg-3">
           <?php if( $imagen ): ?>
           <img class="max-width-14" src="<?php echo $imagen['url'];?>" alt="<?php echo $imagen['alt'];?>">
@@ -285,16 +289,10 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 <!-- end porque nosotros -->
 
 <!-- Bloc Testimonials -->
-<div class="bg-gray-100">
-  <div class="container space-2 space-1--lg">
-    
-    <div class="w-md-80 w-lg-60 text-center mx-md-auto pt-3 mb-5">
-      <h1>Experiencias</h1>
-    </div>
-   <div class="container space-3-bottom--lg">
-        <div class="card-mb card-sm-columns card-sm-2-count"> 
-    
 
+  <div class="container text-center pt-1 pb-3">
+  <h2 style="color: #000042; text-align: left;">Experiencias</h2>
+</div>
     <?php 
    
         $comentariosViajeros = new WP_Query(
@@ -316,28 +314,55 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
               $comentariosViajeros->the_post(); 
 
        
-       
-       ?>   
+        $thumbExp = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pageBannernew' );?>
+    
+      <div class="js-slick-carousel u-slick"
+           data-infinite="true"
+           data-autoplay="true"
+           data-speed="7000"
+           data-adaptive-height="true"
+           data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
+           data-arrow-left-classes="fa fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
+           data-arrow-right-classes="fa fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
+           data-numbered-pagination="#slickPaging">
+        <!-- Slide #1 -->
+        <div class="js-slide gradient-overlay-half-dark-v1 bg-img-hero" style="background-image: url(<?php echo $thumbExp['0'];?>);">
+          <div class="container space-2 space-4-top--lg space-3-bottom--lg">
+            <!-- Title -->
+            <div class="w-md-80 w-lg-60">
+              <div class="mb-4">
+                <h1 class="display-4 font-size-48--md-down text-white"><?php the_title_attribute();?></h1>
+                <h6 class="d-block text-white mb-2"><?php echo get_the_author();?></h6>
+                <p class="lead text-white"><?php the_excerpt();?></p>
+              </div>
+            <a class="btn btn-wide btn-outline-primary" href="<?php the_permalink();?>">Conoce más</a>
+          </div>
+          <!-- End Title -->
+        </div>
+        <!-- Slide #1 -->
+      </div>
 
+      <!-- End Slide #1 -->
 
-       <article class="card mb-3">
-              <img class="card-img-top" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('blogCover');}?>" alt="<?php the_title_attribute();?>">
+     <!--   <article class="card mb-3">
+              <img class="card-img-top" src="<?php //if ( has_post_thumbnail() ) { the_post_thumbnail_url('blogCover');}?>" alt="<?php //the_title_attribute();?>">
               <div class="card-body p-5">
-                <h6 class="d-block text-muted mb-2">Fecha: <?php the_time('Y - M - j');?></h6>
-                <h6 class="d-block text-muted mb-2">Categorías: <?php echo get_the_category_list(',');?></h6>
-                <h6 class="d-block text-muted mb-2">Viajero: <?php echo get_the_author();?></h6>
+                <h6 class="d-block text-muted mb-2">Fecha: <?php //the_time('Y - M - j');?></h6>
+                <h6 class="d-block text-muted mb-2">Categorías: <?php //echo get_the_category_list(',');?></h6>
+                <h6 class="d-block text-muted mb-2">Viajero: <?php //echo get_the_author();?></h6>
                 <h3 class="h5">
-                    <a href="<?php the_permalink();?>"><?php the_title();?></a>
+                    <a href="<?php //the_permalink();?>"><?php //the_title();?></a>
                 </h3>
-                  <p><?php the_excerpt();?></p>
+                  <p><?php //the_excerpt();?></p>
             </div>
-          </article>
+          </article> -->
 
+    <?php //} wp_reset_postdata();?>
+    
     <?php } wp_reset_postdata();?>
-    </div>
-  </div>
-</div>
-</div>
+ </div>
+
+
 <!-- End Bloc Testimonials -->
 
 <!-- CTA Section -->
@@ -359,5 +384,17 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 <!-- End CTA Section -->
 
 <?php
+
 get_footer();
-?>
+
+} else {?>
+
+<div class="container space-2" style="padding-top: 320px;">
+  <div class=" text-center ">
+    <h1 style="color: #000042; text-align: center;">Travelmate está en desarrollo</h1>
+    <h3 style= "text-align: center;">Pronto estaremos al aire</h3>
+    <h2 style="color: #000042; text-align: center;">;)</h2>
+  </div>
+</div>
+
+<?php };

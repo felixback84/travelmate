@@ -11,7 +11,7 @@ while(have_posts()) {
       <!-- Info -->
       <div class="container text-center space-1">
         <div class="w-lg-75 mx-lg-auto">
-          <h1 class="text-white font-weight-medium"><?php the_title();?></h1>
+          <h2 class="text-white font-weight-medium"><?php the_title();?></h2>
         </div>
 
         <?php $precioDestinoRegional = get_field('precio_destino_regional'); ?>
@@ -166,99 +166,124 @@ while(have_posts()) {
 </div>
 <!-- End Features Section -->	
 
-<div class="container space-1 space-1--lg">
-			
+<div class="container space-1 space-1--lg">	
 	<div class="row align-items-lg-center">
 		<div class="col-lg-12 order-lg-1">
-          	<div class="pr-lg-4">
-            	<p><?php the_content();?></p>
-            	<div class="mb-5"></div>
-            		<a class="btn btn-sm btn-primary btn-wide" href="https://themes.getbootstrap.com/product/space-multipurpose-responsive-template/">Empieza ahora</a>
-          		</div>
-          		<!-- End Article Content -->
-        	</div>
-      	</div>
+    	<div class="pr-lg-4">
+      	<p><?php the_content();?></p>
+      	<div class="mb-5"></div>
+      		<a class="btn btn-sm btn-primary btn-wide" href="">Empieza ahora</a>
+    		</div>
+    		<!-- End Article Content -->
+  	 </div>
+	  </div>
 	</div>
 
 	<!-- Gmap -->
-    <?php if( have_rows('ubicaciones_rutas') ): ?>
-    <div class="acf-map">
-      <?php while ( have_rows('ubicaciones_rutas') ) : the_row(); 
-      $location = get_sub_field('google_map_destino_rutas');
-      ?>
-      <div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>">
-        <h4><?php the_sub_field('destino_para_rutas'); ?></h4>
-        <p class="address"><?php echo $location['address']; ?></p>
-      </div>
-    <?php endwhile; ?>
+  <?php if( have_rows('ubicaciones_rutas') ): ?>
+  <div class="acf-map">
+    <?php while ( have_rows('ubicaciones_rutas') ) : the_row(); 
+    $location = get_sub_field('google_map_destino_rutas');
+    ?>
+    <div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>">
+      <h4><?php the_sub_field('destino_para_rutas'); ?></h4>
+      <p class="address"><?php echo $location['address']; ?></p>
     </div>
-    <?php endif; ?>
-    <!-- end Gmap -->
+  <?php endwhile; ?>
+  </div>
+  <?php endif; ?>
+  <!-- end Gmap -->
 </div>
+
+<!-- viaje nuevo -->
+<div style="background-color: #bbb">
+  <div class="container">
+    <div class="row justify-content-md-left align-items-md-left py-5">    
+      <div class="col-lg-9 col-md-3">
+        <p class="text-light px-3">¨Todos nuestros planes base son 100%
+      personalizables / cada elemento puedes adaptarlo según tus necesidades, intereses
+      y presupuesto, desde la duración hasta el alojamiento o las actividades¨</p>
+      </div>
+      <div class="col-lg-3 col-md-3">
+        <span class="input-group-append form__append">
+          <button type="submit" class="btn btn-block btn-primary btn-wide" >Contáctanos ya</button>
+        </span>
+      </div>     
+    </div>
+  </div>
+</div>
+<!-- End viaje nuevo -->
+
+<!-- Title -->
+<div class="container text-center space-1">
+  <div class="w-md-80 text-center mx-auto">
+    <h2 style="color: #000042;">Itinerario</h2>
+  </div>
+</div>
+<!-- end Title -->
 
 <!-- rutas iti -->
 <div class="container">
 	<div class="card-deck d-block d-lg-flex">
 		<div class="col-md-12 order-md-2 mb-5 mb-md-0">
-	    	<div class="mb-2">
-	      	<!-- Title -->
-	        
-		        <?php
+    	<div class="mb-2">
+      	<!-- Title -->
+        
+	        <?php
 
-		        if( have_rows('diario_de_ruta') ):
-		        while( have_rows('diario_de_ruta') ) : the_row();
-		          
-		          $imagenDia = get_sub_field('imagen_del_dia_en_ruta');
-		          $nombreDia = get_sub_field('nombre_del_dia_en_ruta');
-		          $DescripcionDia = get_sub_field('descripcion_del_dia_en_ruta');
-		          $tourDia = get_sub_field('tour_del_dia_en_ruta');
-		          $lugarInteresDia = get_sub_field('lugar_de_interes_en_ruta');
-		          ?>
+	        if( have_rows('diario_de_ruta') ):
+	        while( have_rows('diario_de_ruta') ) : the_row();
+	          
+	          $imagenDia = get_sub_field('imagen_del_dia_en_ruta');
+	          $nombreDia = get_sub_field('nombre_del_dia_en_ruta');
+	          $DescripcionDia = get_sub_field('descripcion_del_dia_en_ruta');
+	          $tourDia = get_sub_field('tour_del_dia_en_ruta');
+	          $lugarInteresDia = get_sub_field('lugar_de_interes_en_ruta');
+	          ?>
 
-			    <article class="card rounded mb-3 card border-1 bg-white shadow">
-			      <div class="card-body row align-items-stretch no-gutters p-0">
-			       <div class="col-7">
-				        <div class="p-5">
-	                <h3 style="color: #000042;" class="d-block"><?php echo $nombreDia;?></h3>
-	                <p> <?php echo $DescripcionDia;?> </p>
-	                <hr class="my-1">
-	                <ul class="list-inline text-secondary">
-				                	
-				            <li class="list-inline-item mr-4">
-				              	<span class="fas fa-map-marked-alt mr-2"></span>
-				              	<?php if($tourDia):
-            						foreach( $tourDia as $tour ):?>
-				              	<a href="<?php echo get_the_permalink($tour->ID);?>"><?php echo get_the_title($tour->ID);?> </a>
-				              	<?php
-					            endforeach;
-            						endif;
-					            ?>
-				            </li>
-				            
-				            <li class="list-inline-item mr-4">
-				              	<span class="fas fa-map-marker-alt mr-2"></span>
-				              	<?php if($lugarInteresDia):
-            						foreach( $lugarInteresDia as $lugar ):?>
-				              	<a href="<?php echo get_the_permalink($lugar->ID);?>"><?php echo get_the_title($lugar->ID);?> </a>
-				              	<?php
-					            endforeach;
-            						endif;
-					            ?>
-				            </li>
-						      </ul>   
-				        </div>
+		    <article class="card rounded mb-3 card border-1 bg-white shadow">
+		      <div class="card-body row align-items-stretch no-gutters p-0">
+		       <div class="col-7">
+			        <div class="p-5">
+                <h3 style="color: #000042;" class="d-block"><?php echo $nombreDia;?></h3>
+                <p> <?php echo $DescripcionDia;?> </p>
+                <hr class="my-1">
+                <ul class="list-inline text-secondary">
+			                	
+			            <li class="list-inline-item mr-4">
+			              	<span class="fas fa-map-marked-alt mr-2"></span>
+			              	<?php if($tourDia):
+          						foreach( $tourDia as $tour ):?>
+			              	<a href="<?php echo get_the_permalink($tour->ID);?>"><?php echo get_the_title($tour->ID);?> </a>
+			              	<?php
+				            endforeach;
+          						endif;
+				            ?>
+			            </li>
+			            
+			            <li class="list-inline-item mr-4">
+			              	<span class="fas fa-map-marker-alt mr-2"></span>
+			              	<?php if($lugarInteresDia):
+          						foreach( $lugarInteresDia as $lugar ):?>
+			              	<a href="<?php echo get_the_permalink($lugar->ID);?>"><?php echo get_the_title($lugar->ID);?> </a>
+			              	<?php
+				            endforeach;
+          						endif;
+				            ?>
+			            </li>
+					      </ul>   
 			        </div>
-	            <div class="col-5 card-img-right d-none d-inline-block bg-img-hero" data-bg-img-src="<?php echo $imagenDia['url'];?>">
-	            </div>
-			      </div>
-		      </article>
-	        <?php 
-            endwhile;
-            endif;?>  
-
-	    	</div>      
-		</div>          
-	</div>              	
+		        </div>
+            <div class="col-5 card-img-right d-none d-inline-block bg-img-hero" data-bg-img-src="<?php echo $imagenDia['url'];?>">
+            </div>
+		      </div>
+	      </article>
+        <?php 
+          endwhile;
+          endif;?>  
+    	</div>      
+	  </div>          
+  </div>              	
 </div>
 <!-- end rutas iti -->
     

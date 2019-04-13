@@ -28,7 +28,7 @@ function travelmate_files() {
 
  /*<!-- JS Global Compulsory -->*/
  //wp_enqueue_media();
- wp_enqueue_script('0-Google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyDlGWyhPNSKr9cDIUpHKJAjOSPCmmhYQMg', NULL, '1.0', true );
+ wp_enqueue_script('0-Google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyA-tHLXRE7FJKliACGAjP4Jgb0aWz2VUiE', NULL, '1.0', true );
  wp_enqueue_script('0a-Google-Maps', get_theme_file_uri('/js/GoogleMaps.js') , array('jquery'), 'false' , true );
  //wp_enqueue_script('0b-files-upload', get_theme_file_uri('/js/files-upload.js'), array( 'jquery' ), '1.0.0', true);
 
@@ -149,7 +149,7 @@ function travelmate_get_terms($postID, $term){
 */
 
 function universityMapKey($api) {
-$api['key'] = 'AIzaSyDlGWyhPNSKr9cDIUpHKJAjOSPCmmhYQMg';
+$api['key'] = 'AIzaSyA-tHLXRE7FJKliACGAjP4Jgb0aWz2VUiE';
 return $api;
 
 }
@@ -394,14 +394,23 @@ function my_get_posts()
     <!-- End Total -->
     <!-- Credit Card -->
     <div id="epayCo">
+
+      <script>
+
+
+      var comision = document.getElementById("valortotal").value;
+
+
+      </script>
+
       <form>
         <script
             src="https://checkout.epayco.co/checkout.js"
             class="epayco-button"
             data-epayco-key="491d6a0b6e992cf924edd8d3d088aff1"
             data-epayco-amount="50000"
-            data-epayco-name="Vestido Mujer Primavera"
-            data-epayco-description="Vestido Mujer Primavera"
+            data-epayco-name="comision"
+            data-epayco-description="comision"
             data-epayco-currency="cop"
             data-epayco-country="co"
             data-epayco-test="true"

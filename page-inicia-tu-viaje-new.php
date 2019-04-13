@@ -1,7 +1,7 @@
 <?php
 get_header();
 
-if (is_user_logged_in()) {
+//if (is_user_logged_in()) {
 
   while(have_posts()) {
     the_post(); ?>
@@ -346,7 +346,7 @@ if (is_user_logged_in()) {
   }
   
   function cotizarValores(){
-    //  ruta, cantidad personas, estilo viaje--
+  //  ruta, cantidad personas, estilo viaje--
  
  valorRuta = $("#rutaRegional1 option:selected").val();
  numeroNinos = $("#Numero_ninos").val();
@@ -374,6 +374,6 @@ if (is_user_logged_in()) {
 
   }
 </script>
-<?php  } }
+<?php  } //}
 get_footer();
 ?>

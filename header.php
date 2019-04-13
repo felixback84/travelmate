@@ -22,11 +22,11 @@
               <img class="u-header__navbar-brand-default" src="<?php 
                         $icon = wp_get_attachment_image_url('1548','',true );
                         echo $icon;
-                        ?>" alt="Logo">
+                        ?>" alt="Logo" style="height: 40px; width: 240px ">
               <img class="u-header__navbar-brand-mobile" src="<?php 
                         $icon = wp_get_attachment_image_url('1549','',true );
                         echo $icon;
-                        ?>" alt="Logo">
+                        ?>" alt="Logo" style="height: 40px;">
             </a>
           </div>
           <!-- End Logo -->
@@ -84,16 +84,19 @@
                 </a>
               </li>
 
-              <?php if (is_user_logged_in()) { ?>
-              <li class="nav-item u-header__nav-item">
-                <a class="btn btn-success" href="<?php echo site_url('/inicia-tu-viaje-new/');?>"
+              
+              <li class="nav-item u-header__nav-item-btn">
+                <a class="btn btn-sm btn-primary" href="<?php echo site_url('/inicia-tu-viaje-new/');?>"
                 style="color: white; border-radius: 0px;">
                   Inicia tu viaje
                 </a>
               </li>
 
+
+
+              <?php if (is_user_logged_in()) { ?>
               <li class="nav-item u-header__nav-item"> 
-                <a class="btn btn-info" 
+                <a class="btn btn-sm btn-info" 
                    href="<?php 
 
                    $ourCurrentUser = wp_get_current_user();
@@ -126,11 +129,20 @@
                 style="color: white;">Cerrar sesión</a>
               </li>
 
-              <?php } else { ?> 
-              <li class="nav-item u-header__nav-item">           
+              <?php } else { ?>
+               <li class="nav-item u-header__nav-item">
+                <a class="btn btn-sm btn-primary" href="#signupModalClassic" role="button"
+                   data-modal-target="#signupModalClassic"
+                   data-overlay-color="#151b26"
+                   style= "border-radius: 0px;">
+                  <span class="fa fa-user-circle mr-1"></span>
+                  Ingresar
+                </a>
+              </li> 
+              <!-- <li class="nav-item u-header__nav-item">           
                 <a class="btn btn-success" 
                 
-                   href="<?php echo site_url('/inicio-sesion/');?>" 
+                   href="<?php //echo site_url('/inicio-sesion/');?>" 
                    role="button"
                    data-overlay-color="#151b26"
                    
@@ -140,30 +152,81 @@
               </li> 
               <li class="nav-item u-header__nav-item"> 
                 <a class="btn btn-info" 
-                   href="<?php echo site_url('/registrarse/');?>" 
+                   href="<?php //echo site_url('/registrarse/');?>" 
                    role="button"
                    data-overlay-color="#151b26"
               
                 style="color: white; border-radius: 0px;">
                   Registrarse
                 </a>
-              </li>
+              </li> -->
               <?php } ?>
-              <!-- Button -->
-             <!-- <li class="nav-item u-header__nav-item-btn">
-                <a class="btn btn-sm btn-primary" href="#signupModalClassic" role="button"
-                   data-modal-target="#signupModalClassic"
-                   data-overlay-color="#151b26">
-                  <span class="fa fa-user-circle mr-1"></span>
-                  Signin
-                </a>
-              </li>
-            End Button -->
             </ul>
           </div>
           <!-- End Navigation -->
         </nav>
         <!-- End Nav -->
       </div>
+    </div>
+
+    <!-- Signup Modal Window -->
+    <div id="signupModalClassic" class="js-signup-modal u-modal-window" style="width: 600px;">
+      <!-- Modal Close Button -->
+      <button class="btn btn-sm btn-icon btn-text-secondary u-modal-window__close" type="button" onclick="Custombox.modal.close();">
+        <span class="fas fa-times"></span>
+      </button>
+      <!-- End Modal Close Button -->
+
+      <!-- Content -->
+      <div class="p-5">
+        <!-- Signin -->
+        <div id="signin" data-target-group="idForm">
+          <!-- Title -->
+          <header class="text-center mb-5">
+            <h2 class="h4 mb-0">Por favor ingrese</h2>
+            <p>Llene estos campos para ingresar.</p>
+          </header>
+          <hr class="my-5">
+          <?php echo do_shortcode('[wpforms id="1598" title="false" description="false"]');?>
+          <!-- End Title -->
+          <hr class="my-5">
+          <div class="text-center mb-3">
+            <p class="text-muted">
+              ¿No tiene una cuenta?
+              <a class="js-animation-link" href="javascript:;"
+                 data-target="#signup"
+                 data-link-group="idForm"
+                 data-animation-in="fadeIn">Regístrese
+              </a>
+            </p>
+          </div>
+        </div>
+        <!-- End Signin -->
+
+        <!-- Signup -->
+        <div class="pb-3"id="signup" style="display: none; opacity: 0;" data-target-group="idForm">
+          <!-- Title -->
+          <header class="text-center mb-5">
+            <h2 class="h4 mb-0">Por favor regístrate</h2>
+            <p>Llene todos los campos para iniciar.</p>
+          </header>
+          <hr class="my-5">
+          <?php echo do_shortcode('[wpforms id="1597" title="false" description="false"]'); ?>
+          <!-- End Title -->
+          <hr class="my-5">
+          <div class="text-center mb-3">
+            <p class="text-muted">
+              ¿Ya tiene una cuenta?
+              <a class="js-animation-link" href=""
+                 data-target="#signin"
+                 data-link-group="idForm"
+                 data-animation-in="fadeIn">Ingresar
+              </a>
+            </p>
+          </div> 
+        </div>
+        <!-- End Signup -->
+      </div>
+      <!-- End Content -->
     </div>
   </header>

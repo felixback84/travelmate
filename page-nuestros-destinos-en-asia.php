@@ -48,6 +48,19 @@ get_header();
 </main>
 <!-- header end -->
 
+<div class="bg-gray-100">
+  <div class="container space-1">
+    <div class="row align-items-lg-center">
+      <div class="col-md-12 order-md-2 mb-5 mb-md-0">
+        <div class="mb-4">
+          <!-- Title -->
+          <p><?php the_content();?></p>
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>
+
 <!-- America -->
 <div class="w-lg-90 w-lg-60 mx-md-auto">
    
@@ -94,7 +107,7 @@ get_header();
           <!-- Divider -->
           <hr class="my-2">
           <!-- end Divider -->
-          <span class="h5 d-inline-block text-primary mb-1"><?php echo $preciosRegion;?></span>
+          <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $preciosRegion;?></span>
             <small class="text-secondary"> por persona</small>
           </span>
           <p><?php the_excerpt();?></p>
@@ -152,7 +165,7 @@ get_header();
           <!-- Divider -->
           <hr class="my-2">
           <!-- end Divider -->
-          <span class="h5 d-inline-block text-primary mb-1"><?php echo $preciosDestino;?></span>
+          <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $preciosDestino;?></span>
             <small class="text-secondary"> por persona</small>
           </span>
           <p><?php the_excerpt();?></p>
