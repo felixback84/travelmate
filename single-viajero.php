@@ -37,19 +37,19 @@ while(have_posts()) {
      id="h-tab-vuelos-tab" 
      href="#vuelos">
      <h3><i class="fas fa-plane"></i></h3>
-      Vuelos
+      Transporte
     </a>
     <a class="nav-link h5 tab-modern__nav-link mb-4" 
       id="h-tab-hoteles-tab" 
       href="#hoteles">
       <h3><i class="fas fa-bed"></i></h3>
-      Hoteles      
+      Alojamientos      
     </a>
     <a class="nav-link h5 tab-modern__nav-link mb-4" 
      id="h-tab-tours-tab" 
      href="#tours">
      <h3><i class="fas fa-map-marked-alt"></i></h3>
-      Tours
+      Excursiones
     </a>
     <a class="nav-link h5 tab-modern__nav-link mb-4" 
       id="h-tab-itinerario-tab" 
@@ -68,61 +68,68 @@ while(have_posts()) {
 
   <div data-spy="scroll" class="container" data-target="#navbar-viajero" data-offset="0">
     <!--  vuelos -->
-    <div class="" id="vuelos">
+    <div id="vuelos">
       <div class="row align-items-lg-center">
         <div class="col-md-12 order-md-2 mb-5 mb-md-0">
           <div class="mb-4">
             <h2><i class="fas fa-plane"></i></h2>
             <hr class="my-2">
-            <h2 class="h3">Vuelos</h2>
-            
-            <table class="table table-bordered table-hover"style="width:100%">
-              <thead class="">
-                <tr>
-                  <th style="width:50%;text-align:center">Vuelos</th>
-                  <th style="width:50%;text-align:center">Confirmaciones</th>
-                <tr>  
-              </thead>
+            <h2 class="h3">Transporte</h2>
+            <div class="py-2">
+              <div class="card-mb card-sm-columns card-sm-2-count">
 
-              <tbody>
+            <?php
+
+            $current_user = wp_get_current_user();
+            $vuelos = new WP_Query(
+                  array(
+
+                  'posts_per_page' => -1,
+                  'post_type' => 'vuelo',
+                  'tax_query' =>  array(
+                                        array(
+                                              'taxonomy' => 'nombre_de_viajeros',
+                                              'field'    => 'slug',
+                                              'terms'    => $current_user->user_nicename,
+                                        ), 
+                                  ),
+                        )
+              );
+
+            while($vuelos->have_posts()) {
+            $vuelos->the_post(); 
+            $tipoTransporte = get_field_object('field_5cb65abd14932');
+            $fecha = get_field('field_5c1c3a36c2c39'); 
+            $hora = get_field('field_5cbdc769ee009');
+            $ruta = get_field('field_5cb66049dfb71');
+
+                ?>
+
+                <div class="pt-3 card border-1 mt-1 p-3" style="background-color: #f1f1f1">
+                  <span class="">
+                    <h3 class="d-inline-block" style="padding-right: 5px;"><i class="fas fa-plane"></i></h3>
+                    <a class="d-inline-block" href="<?php echo get_the_permalink();?>">
+                      <h4 class="h5 mb-0"><?php echo get_the_title();?></h4>
+                    </a>
+                  </span>
                 
-              <?php
-                if( have_rows('confirmaciones_de_vuelos') ): 
-                while( have_rows('confirmaciones_de_vuelos') ): the_row();
-
-                $vuelosViaje = get_sub_field('vuelo_del_viajero');
-                //$fotoHotelesConfirmacion = get_sub_field('foto_confirmacion_hotel'); ?>
-                
-               <tr style="">
-                  <?php
-                   echo '<td>'; 
-                    if( $vuelosViaje ): 
-                    foreach( $vuelosViaje as $vuelo ): ?>
-                      <li class="list-group-item align-items-center p-1">   
-                        <div class="p-4">
-                          <a class="text-center" href="<?php echo get_the_permalink($vuelo->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($vuelo->ID);?></h4></a>
-                        </div>
-                      </li> 
-                    <?php 
-                    endforeach;
-                    endif;
-                   echo '</td>';?>
-                   <td>
-                    <button type="submit" class="btn btn-outline-primary btn-block">Foto reservas</button>
-                   </td> 
-                </tr>
-                   <?php
-                  endwhile; 
-                  endif; 
-                  ?>
-              </tbody>     
-            </table>        
-
+                  <hr class="my-2">
+          
+                  <p>Tipo: <?php echo $tipoTransporte['value'];?></p>
+                  <p>Fecha y hora: <?php echo $fecha . ' - ' . $hora ;?></p>
+                  <p>Ruta: <?php echo $ruta;?></p>
+                  <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
+                    Conoce más
+                    <span class="fa fa-angle-right ml-2"></span>
+                  </a>
+                </div>
+                <?php } wp_reset_postdata();?>
+              </div>
+            </div>
           </div>
         </div>
       </div>        
     </div>
-       
     <!--  end vuelos -->
 
     <!--  hoteles -->
@@ -133,51 +140,55 @@ while(have_posts()) {
             <!-- Title -->
             <h2><i class="fas fa-bed"></i></h2>
             <hr class="my-2">
-            <h2 class="h3">Hoteles</h2>
-            
-                 <table class="table table-bordered table-hover"style="width:100%">
-              <thead class="">
-                <tr>
-                  <th style="width:50%;text-align:center">Vuelos</th>
-                  <th style="width:50%;text-align:center">Confirmaciones</th>
-                <tr>  
-              </thead>
+            <h2 class="h3">Alojamientos</h2>
+            <div class="py-2">
+              <div class="card-mb card-sm-columns card-sm-2-count">
 
-              <tbody>
-                
-              <?php
-                if( have_rows('confirmaciones_de_hotel') ): 
-                while( have_rows('confirmaciones_de_hotel') ): the_row();
+                <?php
 
-                $hotelesViaje = get_sub_field('hotel_del_viajero');
-                //$fotoHotelesConfirmacion = get_sub_field('foto_confirmacion_hotel'); ?>
+                $current_user = wp_get_current_user();
+                $hoteles = new WP_Query(
+                      array(
+
+                      'posts_per_page' => -1,
+                      'post_type' => 'hotel',
+                      'tax_query' =>  array(
+                                            array(
+                                                  'taxonomy' => 'nombre_de_viajeros',
+                                                  'field'    => 'slug',
+                                                  'terms'    => $current_user->user_nicename,
+                                            ), 
+                                      ),
+                            )
+                  );
+
+                while($hoteles->have_posts()) {
+                $hoteles->the_post(); 
+                $ciudadHotel = get_field_object('field_5cb7b8561eb64');
                 
-               <tr style="">
-                  <?php
-                   echo '<td>'; 
-                    if( $hotelesViaje ): 
-                    foreach( $hotelesViaje as $hotel ): ?>
-                      <li class="list-group-item align-items-center p-1">   
-                        <div class="p-4">
-                          <a class="text-center" href="<?php echo get_the_permalink($hotel->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($hotel->ID);?></h4></a>
-                        </div>
-                      </li> 
-                    <?php 
-                    endforeach;
-                    endif;
-                   echo '</td>';?>
-                   <td>
-                    <button type="submit" class="btn btn-outline-primary btn-block">Foto reservas</button>
-                   </td> 
-                </tr>
-                   <?php
-                  endwhile; 
-                  endif; 
-                  ?>
-              </tbody>     
-            </table>  
+                ?>
+
+                <div class="pt-3 card border-1 mt-1 p-3" style="background-color: #f1f1f1">
+                  <span class="">
+                    <h3 class="d-inline-block" style="padding-right: 5px;"><i class="fas fa-bed"></i></h3>
+                    <a class="d-inline-block" href="<?php echo get_the_permalink();?>">
+                      <h4 class="h5 mb-0"><?php echo get_the_title();?></h4>
+                    </a>
+                  </span>
+                
+                  <hr class="my-2">
+          
+                  <p>Ciudad: <?php echo $ciudadHotel['value'];?></p>
+                  <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
+                    Conoce más
+                    <span class="fa fa-angle-right ml-2"></span>
+                  </a>
+                </div>
+                <?php } wp_reset_postdata();?>
+              </div>
+            </div>
           </div>
-        </div>        
+        </div>   
       </div>
     </div>
     <!--  end hoteles -->
@@ -189,61 +200,60 @@ while(have_posts()) {
           <div class="mb-4">
             <h2><i class="fas fa-map-marked-alt"></i></h2>
             <hr class="my-2">
-            <h2 class="h3">Tours</h2>
-            <div class="u-cubeportfolio">
-              <!-- Content -->
-              <div class="cbp"
-                    data-controls="#filterControls"
-                    data-animation="quicksand"
-                    data-caption-animation="zoom"
-                    data-x-gap="30"
-                    data-y-gap="30"
-                    data-media-queries='[
-                      {"width": 1500, "cols": 2},
-                      {"width": 1100, "cols": 2},
-                      {"width": 800, "cols": 2},
-                      {"width": 480, "cols": 2},
-                      {"width": 300, "cols": 1}
-                    ]'>
+            <h2 class="h3">Excursiones</h2>
+            
+            <div class="py-2">
+              <div class="card-mb card-sm-columns card-sm-2-count">
 
                 <?php
-                if( have_rows('tours_itinerario') ): 
-                while( have_rows('tours_itinerario') ): the_row();
 
-                $toursViaje = get_sub_field('tour_del_viajero');
+                $current_user = wp_get_current_user();
+                $tour = new WP_Query(
+                      array(
+
+                      'posts_per_page' => -1,
+                      'post_type' => 'tour',
+                      'tax_query' =>  array(
+                                            array(
+                                                  'taxonomy' => 'nombre_de_viajeros',
+                                                  'field'    => 'slug',
+                                                  'terms'    => $current_user->user_nicename,
+                                            ), 
+                                      ),
+                            )
+                  );
+
+                while($tour->have_posts()) {
+                $tour->the_post(); 
+                $horaTour = get_field_object('field_5c1c32a813220');
+                
                 ?>
 
-                <div class="cbp-item p-2">
-                  <div class="cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                    <?php 
-                    if( $toursViaje ): 
-                    foreach( $toursViaje as $tour ): ?>  
-                      <img src="<?php $thumb12 = wp_get_attachment_image_src( get_post_thumbnail_id($tour->ID), 'full' );
-                        echo $thumb12['0'];?>" alt="Image Description">
-                    </div>
-                  </div>
-                  <div class="pt-2">
-                    <a href="<?php echo get_the_permalink($tour->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($tour->ID);?></h4></a>
-                    
-                  </div>
-                  <?php 
-                  endforeach;
-                  endif;?>
+                <div class="pt-3 card border-1 mt-1 p-3" style="background-color: #f1f1f1">
+                  <span class="">
+                    <h3 class="d-inline-block" style="padding-right: 5px;"><i class="fas fa-map-marked-alt"></i></h3>
+                    <a class="d-inline-block" href="<?php echo get_the_permalink();?>">
+                      <h4 class="h5 mb-0"><?php echo get_the_title();?></h4>
+                    </a>
+                  </span>
+                
+                  <hr class="my-2">
+          
+                  <p>Fecha y hora: <?php echo $horaTour['value'];?></p>
+                  <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
+                    Conoce más
+                    <span class="fa fa-angle-right ml-2"></span>
+                  </a>
                 </div>
-                <?php 
-                endwhile;
-                endif;
-                  ?>
-                <!-- End Item -->   
-              </div>  
+                <?php } wp_reset_postdata();?>
+              </div>
+            </div>
           </div>
         </div>
       </div>        
     </div>
     <!--  end tours -->
 
-  
     <!-- intinerario por dias -->
     <div class="" id="itinerario">
       <div class="row align-items-lg-center">
@@ -320,13 +330,15 @@ while(have_posts()) {
 
               if($vueloItiViaje):
                 foreach( $vueloItiViaje as $vueloIti ):?>
-                <div class="container py-1">
+                <div class="container py-2">
                   <div class="card-mb card-sm-columns card-sm-1-count">
                     
                     <div class="pt-3 card border-1 mt-1 p-3">
-                      <h3><i class="fas fa-plane"></i></h3>
+                      <span class="">
+                        <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-plane"></i></h3>
+                        <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($vueloIti->ID);?></h4>
+                      </span>
                       <hr class="my-2">
-                      <a href="<?php echo get_the_permalink($vueloIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($vueloIti->ID);?></h4></a>
                       <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($vueloIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
@@ -343,10 +355,9 @@ while(have_posts()) {
                   <div class="card-mb card-sm-columns card-sm-1-count"> 
                     
                     <div class="pt-3 card border-1 mt-1 p-3">
-                      <h3><i class="fas fa-bed"></i></h3>
+                      <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-bed"></i></h3>
+                      <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($hotelesIti->ID);?></h4>
                       <hr class="my-2">
-                      <a href="<?php echo get_the_permalink($hotelesIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($hotelesIti->ID);?></h4></a>
-                      
                       <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($hotelesIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
@@ -364,10 +375,9 @@ while(have_posts()) {
                   <div class="card-mb card-sm-columns card-sm-1-count"> 
                     
                     <div class="pt-3 card border-1 mt-1 p-3">
-                      <h3><i class="fas fa-map-marked-alt"></i></h3>
+                      <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-map-marked-alt"></i></h3>
+                      <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($toursIti->ID);?></h4>
                       <hr class="my-2">
-                      <a href="<?php echo get_the_permalink($toursIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($toursIti->ID);?></h4></a>
-                      
                       <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($toursIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
@@ -383,12 +393,10 @@ while(have_posts()) {
                 foreach( $lugaresItinerario as $lugaresIti ):?>
                 <div class="container py-2">
                   <div class="card-mb card-sm-columns card-sm-1-count"> 
-                    
                     <div class="pt-3 card border-1 mt-1 p-3">
-                      <h3><i class="fas fa-map-marker-alt"></i></h3>
+                      <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-map-marker-alt"></i></h3>
+                      <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($lugaresIti->ID);?></h4>
                       <hr class="my-2">
-                      <a href="<?php echo get_the_permalink($lugaresIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($lugaresIti->ID);?></h4></a>
-                     
                       <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($lugaresIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
@@ -402,14 +410,12 @@ while(have_posts()) {
 
               if($transladosItinerario):  
                 foreach( $transladosItinerario as $transladosIti ):?>
-                <div class="container py-1">
+                <div class="container py-2">
                   <div class="card-mb card-sm-columns card-sm-1-count"> 
-                    
-                    <div class="pt-3 card border-1 mt-1 p-3">
-                      <h3><i class="fas fa-bus"></i></h3>
+                    <div style="padding-right: 5px;" class="pt-3 card border-1 mt-1 p-3">
+                      <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-bus"></i></h3>
+                      <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($transladosIti->ID);?></h4>
                       <hr class="my-2">
-                      <a href="<?php echo get_the_permalink($transladosIti->ID);?>"><h4 class="h5 mb-0"><?php echo get_the_title($transladosIti->ID);?></h4></a>
-                      
                       <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($transladosIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
@@ -423,12 +429,12 @@ while(have_posts()) {
               </div>
             </div>
 
-    <?php 
-    endforeach;
-    endif; 
+            <?php 
+            endforeach;
+            endif; 
 
-  endwhile;
-  endif;?>  
+          endwhile;
+          endif;?>  
           </div> 
         </div>   
       </div>

@@ -84,30 +84,28 @@
                 </a>
               </li>
 
-              
+              <?php 
+              $ourCurrentUser = wp_get_current_user();
+              if (is_user_logged_in()) { ?>
+
               <li class="nav-item u-header__nav-item-btn">
                 <a class="btn btn-sm btn-primary" href="<?php echo site_url('/inicia-tu-viaje-new/');?>"
                 style="color: white; border-radius: 0px;">
                   Inicia tu viaje
                 </a>
               </li>
-
-
-
-              <?php if (is_user_logged_in()) { ?>
+                
               <li class="nav-item u-header__nav-item"> 
                 <a class="btn btn-sm btn-info" 
                    href="<?php 
 
-                   $ourCurrentUser = wp_get_current_user();
-
-                   if ( count($ourCurrentUser -> roles) == NULL ) {
-                        
-                        echo site_url('/inicia-tu-viaje-new/');
-
+                   if ( in_array( 'subscriber', $ourCurrentUser->roles ) ) {
+                      echo site_url('/inicia-tu-viaje-new/');
+               
                     } else {
 
                       echo site_url('/viajeros/'.strtolower($ourCurrentUser -> user_login));
+
                     }?>" 
                    role="button"
                    data-overlay-color="#151b26"
@@ -139,27 +137,6 @@
                   Ingresar
                 </a>
               </li> 
-              <!-- <li class="nav-item u-header__nav-item">           
-                <a class="btn btn-success" 
-                
-                   href="<?php //echo site_url('/inicio-sesion/');?>" 
-                   role="button"
-                   data-overlay-color="#151b26"
-                   
-                style="color: white; border-radius: 0px;">
-                   Ingresar
-                </a>
-              </li> 
-              <li class="nav-item u-header__nav-item"> 
-                <a class="btn btn-info" 
-                   href="<?php //echo site_url('/registrarse/');?>" 
-                   role="button"
-                   data-overlay-color="#151b26"
-              
-                style="color: white; border-radius: 0px;">
-                  Registrarse
-                </a>
-              </li> -->
               <?php } ?>
             </ul>
           </div>

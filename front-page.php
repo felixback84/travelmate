@@ -1,6 +1,6 @@
 <?php
 
-if (is_user_logged_in()){
+//if (is_user_logged_in()){
 get_header();
 ?>
 <!-- Header Hero Section -->
@@ -15,7 +15,6 @@ get_header();
             <!-- Title -->
             
             <h1 class="display-4 font-size-28--md-down text-white">Explora el mundo con nosotros</h1>
-            <!-- <span class="d-block text-white text-uppercase mb-2">Únete al cambio</span> -->
             <!-- End Title -->
             <div class="pb-6">
               <a class="btn  btn-primary" href="">Comienza con Travelmate</a>
@@ -387,14 +386,14 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 
 get_footer();
 
-} else {?>
+//} else {?>
 
-<div class="container space-2" style="padding-top: 320px;">
+<!-- <div class="container space-2" style="padding-top: 320px;">
   <div class=" text-center ">
     <h1 style="color: #000042; text-align: center;">Travelmate está en desarrollo</h1>
     <h3 style= "text-align: center;">Pronto estaremos al aire</h3>
     <h2 style="color: #000042; text-align: center;">;)</h2>
   </div>
-</div>
+</div> -->
 
-<?php };
+<?php //};
