@@ -7,12 +7,10 @@ get_header();
     <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Terms Section -->
-    <div class="container space-2 space-3--lg">
+    <div class="container py-3">
       <div class="row">
         <div class="col-sm-12 col-lg-12">
           <!-- Info Content -->
-
-          <hr class="my-0">
 
             <?php 
 
@@ -27,7 +25,7 @@ get_header();
              ?>
 
             <!-- Info Content -->
-            <div id="services" class="space-2">
+            <div id="services" class="space-1">
               <div class="mb-3">
                 <?php 
                 if( $numero ):?>
@@ -46,7 +44,7 @@ get_header();
             </div>
             <?php endwhile; 
              endif; ?>
-          <hr class="my-0">   
+  
         </div>
       </div>
     </div>

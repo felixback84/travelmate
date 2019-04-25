@@ -20,7 +20,7 @@ while(have_posts()) {
             <hr class="my-2">
             <h6 class="d-block text-white">Los precios están sujetos a cambios según las fechas, la disponibilidad y tus elecciones.</h6>
           </div>
-          <a class="btn btn-primary btn-wide mb-2 mb-md-0" href="">
+          <a class="btn btn-info btn-wide mb-2 mb-md-0" href="">
             Inicia tu viaje
             <span class="fa fa-angle-right ml-2"></span>
           </a>
@@ -172,7 +172,7 @@ while(have_posts()) {
     	<div class="pr-lg-4">
       	<p><?php the_content();?></p>
       	<div class="mb-5"></div>
-      		<a class="btn btn-sm btn-primary btn-wide" href="">Empieza ahora</a>
+      		<a class="btn btn-sm btn-info btn-wide" href="">Empieza ahora</a>
     		</div>
     		<!-- End Article Content -->
   	 </div>
@@ -206,7 +206,7 @@ while(have_posts()) {
       </div>
       <div class="col-lg-3 col-md-3">
         <span class="input-group-append form__append">
-          <button type="submit" class="btn btn-block btn-primary btn-wide" >Contáctanos ya</button>
+          <button type="submit" class="btn btn-block btn-info btn-wide" >Contáctanos ya</button>
         </span>
       </div>     
     </div>

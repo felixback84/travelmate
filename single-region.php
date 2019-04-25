@@ -22,7 +22,7 @@ while(have_posts()) {
             <hr class="my-2">
             <h6 class="d-block text-white">Los precios están sujetos a cambios según las fechas, la disponibilidad y tus elecciones.</h6>
           </div>
-          <a class="btn btn-primary btn-wide mb-2 mb-md-0" href="">
+          <a class="btn btn-info btn-wide mb-2 mb-md-0" href="">
             Inicia tu viaje
             <span class="fa fa-angle-right ml-2"></span>
           </a>
@@ -117,7 +117,7 @@ while(have_posts()) {
           <p><?php the_excerpt();?></p>
           <!-- End Title -->
           <!-- btn -->
-          <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
+          <a class="btn btn-outline-info btn-wide mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
           <!-- btn -->
         </div>
       </div>
@@ -246,7 +246,7 @@ while(have_posts()) {
             </h5>
             <hr class="my-1">
             <p>Desde <span class="text-primary"><?php echo $precioRuta;?></span> COP / <?php echo $numeroDias;?> dias</p>
-            <a class="btn btn-outline-primary btn-block mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
+            <a class="btn btn-outline-info btn-block mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
           </div>
         </article>
 
@@ -266,7 +266,7 @@ while(have_posts()) {
           </div>
           <div class="col-lg-3 col-md-3">
             <span class="input-group-append form__append">
-              <button type="submit" class="btn btn-block btn-primary btn-wide" >Contáctanos ya</button>
+              <button type="submit" class="btn btn-block btn-info btn-wide" >Contáctanos ya</button>
             </span>
           </div>     
         </div>

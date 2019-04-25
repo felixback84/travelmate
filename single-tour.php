@@ -81,34 +81,64 @@ while(have_posts()) {
 	        	</div>
 	      	</div>
 	    	<!-- End Job Description Section -->
+	    </div>
+
+	    <div class="py-1">
+		    <table class="table table-bordered table-hover"style="width:100%">
+		        <thead>
+		            <tr>
+		               <th style="width:50%;text-align:center">Alojamientos</th>
+		               <th style="width:50%;text-align:center">Confirmaciones</th>
+		            <tr>  
+		        </thead>
+
+		        <tbody>
+
+		          	<?php 
+
+		          	$name = get_field('field_5cbf2c4ac9874');
+		          	$file = get_field('field_5cbe7a404730e');?>
+		        
+			        <tr>
+
+		          	<?php if( $name ): ?>
+		          		<td><p><?php echo $name; ?></p></td>
+		          	<?php endif; 
+
+		          	if( $file ): ?>
+		          		<td><a href="<?php echo $file['url']; ?>"><?php echo $file['filename']; ?></a></td>
+		          	<?php endif; ?>
+
+			        </tr>    
+		    </table>
 	    </div>	
 	</main>
  	<!-- ========== END MAIN CONTENT ========== -->
 
  	<!-- Signup Modal Window -->
     <div id="fotoconfirma3" class="js-signup-modal u-modal-window" style="width: 600px;">
-      <!-- Modal Close Button -->
-      <button class="btn btn-sm btn-icon btn-text-secondary u-modal-window__close" type="button" onclick="Custombox.modal.close();">
-        <span class="fas fa-times"></span>
-      </button>
-      <!-- End Modal Close Button -->
+        <!-- Modal Close Button -->
+        <button class="btn btn-sm btn-icon btn-text-secondary u-modal-window__close" type="button" onclick="Custombox.modal.close();">
+            <span class="fas fa-times"></span>
+        </button>
+        <!-- End Modal Close Button -->
 
-      <!-- Content -->
-      <div class="p-5">
+        <!-- Content -->
+        <div class="p-5">
         <!-- Signin -->
-        <div id="signin" data-target-group="idForm">
-          <!-- Title -->
-          <header class="text-center mb-5">
-            <h2 class="h4 mb-0">Confirmaciones de excursiones</h2>
-            <p>Suba imagen (jpg, jpeg, png) de hasta 2 Megas.</p>
-          </header>
-          <hr class="my-5">
-          <?php echo do_shortcode('[wpforms id="1735"]');?>
-          <!-- End Title -->
+            <div id="signin" data-target-group="idForm">
+            <!-- Title -->
+	            <header class="text-center mb-5">
+	                <h2 class="h4 mb-0">Confirmación de excursiones</h2>
+	                <p>Suba imagen (jpg, jpeg, png) de hasta 2 Megas.</p>
+	            </header>
+	            <hr class="my-5">
+	            <?php echo do_shortcode('[wpforms id="1735"]');?>
+	            <!-- End Title -->
+            </div>
+            <!-- End Signin -->
         </div>
-        <!-- End Signin -->
-      </div>
-      <!-- End Content -->
+        <!-- End Content -->
     </div>
     
 <?php }

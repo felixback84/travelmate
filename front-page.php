@@ -13,11 +13,10 @@ get_header();
         <div class="row justify-content-lg-between align-items-lg-center">
           <div class="col-lg-5 mb-7 mb-lg-0">
             <!-- Title -->
-            
             <h1 class="display-4 font-size-28--md-down text-white">Explora el mundo con nosotros</h1>
             <!-- End Title -->
             <div class="pb-6">
-              <a class="btn  btn-primary" href="">Comienza con Travelmate</a>
+              <a class="btn btn-info" href="">Comienza con Travelmate</a>
             </div>
           </div>
         </div>
@@ -32,82 +31,57 @@ get_header();
   <h2 style="color: #000042; text-align: left;">Destinos</h2>
 </div>
 
-<?php 
-
-$destinosRegionales = new WP_Query(array(
-  'posts_per_page' => 3,
-  'post_type' => array('region'),
-  'orderby' => 'title',
-  'order'   => 'ASC',
-
-));?>
-
-<!--  destinations-->
 <div class="container py-3">
-  <div class="card-mb card-sm-columns card-lg-3-count card-md-2-count">
-  <?php while($destinosRegionales->have_posts()) {
-    $destinosRegionales->the_post(); 
-    $precioDestinoRegional = get_field('precio_destino_regional'); 
-    
-  ?>
-    <article class="card my-2">
-      <img class="card-img-top bg-white p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('homeDestinoCover');}?>" 
-      alt="<?php the_title_attribute()?>">
-          
-      <div class="card-body p-2">  
-        <h3 class="h5">
-          <a href="<?php the_permalink();?>"><?php the_title();?></a>
-        </h3>
-        <hr class="my-2">
-        <!-- Pricing -->
-        <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $precioDestinoRegional;?></span>
-          <small class="text-secondary"> por persona</small>
-        </span>
-                
-        <!-- End Pricing -->
-        <a class="btn btn-block btn-outline-primary" href="">Descubre</a>      
-      </div>
-    </article>
-    <?php } wp_reset_postdata();
-    ?>
+  <div class="js-slick-carousel u-slick u-slick--gutters-3 u-slick--equal-height u-slick--pagination-modern"
+     data-slides-show="3"
+     data-slides-scroll="2"
+     data-pagi-classes="u-slick__pagination mt-2 mr-1"
+     data-responsive='[{
+       "breakpoint": 992,
+       "settings": {
+         "slidesToShow": 2
+       }
+     }, {
+       "breakpoint": 768,
+       "settings": {
+         "slidesToShow": 1
+       }
+     }]'>
 
     <?php 
-
-    $destinos = new WP_Query(array(
-    'posts_per_page' => 4,
-    'post_type' => array('destino'),
+    $destinosAndRegiones = new WP_Query(array(
+    'posts_per_page' => -1,
+    'post_type' => array('destino', 'region'),
     'orderby' => 'title',
     'order'   => 'ASC',
-
     ));?>
 
     <!--  destinations-->
- 
-    <?php while($destinos->have_posts()) {
-    $destinos->the_post(); 
+
+    <?php while($destinosAndRegiones->have_posts()) {
+    $destinosAndRegiones->the_post(); 
     $precioDestino = get_field('precio_destino'); 
-    
+    $precioDestinoRegional = get_field('precio_destino_regional');
     ?>
-   
-    <article class="card my-2">
-      <img class="card-img-top bg-white p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('homeDestinoCover');}?>" 
-      alt="<?php the_title_attribute()?>">
-        
-      <div class="card-body p-2">  
-        <h3 class="h5">
-          <a href="<?php the_permalink();?>"><?php the_title();?></a>
-        </h3>
-        <hr class="my-2">
-        <!-- Pricing -->
-        <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $precioDestino;?></span>
-          <small class="text-secondary"> por persona</small>
-        </span>
-        <!-- End Pricing -->
-        <a class="btn btn-block btn-outline-primary" href="">Descubre</a>      
-      </div>
-    </article>
-   <?php } wp_reset_postdata();
-    ?>
+    <div class="js-slide">
+      <article class="card my-2">
+        <img class="card-img-top bg-white p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('homeDestinoCover');}?>" 
+        alt="<?php the_title_attribute()?>">
+          
+        <div class="card-body p-2">  
+          <h3 class="h5">
+            <a href="<?php the_permalink();?>"><?php the_title();?></a>
+          </h3>
+          <hr class="my-2">
+            <span class="h5 d-inline-block text-primary mb-1"><small class="text-secondary">Desde </small><?php echo $precioDestinoRegional;?><?php echo $precioDestino;?></span>
+            <small class="text-secondary"> por persona</small>
+          </span>
+          <!-- End Pricing -->
+          <a class="btn btn-block btn-outline-info" href="">Descubre</a>      
+        </div>
+      </article>
+    </div>  
+    <?php } wp_reset_postdata();?>
   </div>
 </div> 
 <!-- end destinations-->
@@ -289,79 +263,76 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 
 <!-- Bloc Testimonials -->
 
+
+
+<div class="container-fluid py-3" style="background-color: #fafafa">
   <div class="container text-center pt-1 pb-3">
-  <h2 style="color: #000042; text-align: left;">Experiencias</h2>
-</div>
-    <?php 
-   
-        $comentariosViajeros = new WP_Query(
-          array(
+    <h2 style="color: #000042; text-align: left;">Experiencias</h2>
+  </div>
+  <div class="container">
+  <div class="js-slick-carousel u-slick u-slick--gutters-3 u-slick--equal-height u-slick--pagination-modern"
+     data-slides-show="2"
+     data-slides-scroll="2"
+     data-pagi-classes="u-slick__pagination mt-2 mr-1"
+     data-responsive='[{
+       "breakpoint": 992,
+       "settings": {
+         "slidesToShow": 2
+       }
+     }, {
+       "breakpoint": 768,
+       "settings": {
+         "slidesToShow": 1
+       }
+     }]'>
+      
+<?php 
 
-          'posts_per_page' => -1,
-          'post_type' => 'post',
-          'tax_query' =>  array(
-                                array(
-                                      'taxonomy' => 'category',
-                                      'field'    => 'slug',
-                                      'terms'    => array( 'experiencias-travelmate' ),
-                                ), 
-                          ),
-                )
-      );
+    $comentariosViajeros = new WP_Query(
+      array(
 
-        while($comentariosViajeros->have_posts()) {
-              $comentariosViajeros->the_post(); 
+      'posts_per_page' => -1,
+      'post_type' => 'post',
+      'tax_query' =>  array(
+                            array(
+                                  'taxonomy' => 'category',
+                                  'field'    => 'slug',
+                                  'terms'    => array( 'experiencias-travelmate' ),
+                            ), 
+                      ),
+            )
+  );
 
-       
-        $thumbExp = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pageBannernew' );?>
-    
-      <div class="js-slick-carousel u-slick"
-           data-infinite="true"
-           data-autoplay="true"
-           data-speed="7000"
-           data-adaptive-height="true"
-           data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle"
-           data-arrow-left-classes="fa fa-arrow-left u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left ml-lg-2 ml-xl-4"
-           data-arrow-right-classes="fa fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
-           data-numbered-pagination="#slickPaging">
-        <!-- Slide #1 -->
-        <div class="js-slide gradient-overlay-half-dark-v1 bg-img-hero" style="background-image: url(<?php echo $thumbExp['0'];?>);">
-          <div class="container space-2 space-4-top--lg space-3-bottom--lg">
-            <!-- Title -->
-            <div class="w-md-80 w-lg-60">
-              <div class="mb-4">
-                <h1 class="display-4 font-size-48--md-down text-white"><?php the_title_attribute();?></h1>
-                <h6 class="d-block text-white mb-2"><?php echo get_the_author();?></h6>
-                <p class="lead text-white"><?php the_excerpt();?></p>
+  while($comentariosViajeros->have_posts()) {
+      $comentariosViajeros->the_post(); ?>
+
+    <!-- Card -->
+    <div class="card-deck d-block d-lg-flex">
+      <div class="js-slide">
+        <article class="card rounded mb-5">
+          <div class="card-body row align-items-stretch no-gutters p-0">
+            <!-- News Blog Card -->
+              <div class="col-7">
+                <div class="p-5">
+                  <h6><?php echo get_the_author();?></h6>
+                  <h2 class="h5 mb-3">
+                    <a href="<?php the_permalink();?>"><?php the_title();?></a>
+                  </h2>
+                  <p class="mb-0"><?php echo wp_trim_words(get_the_content(),18);?></p>
+                </div>
               </div>
-            <a class="btn btn-wide btn-outline-primary" href="<?php the_permalink();?>">Conoce más</a>
+              <div class="col-5 card-img-right d-none d-inline-block bg-img-hero" data-bg-img-src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('blogCover');}?>">
+              </div>
           </div>
-          <!-- End Title -->
-        </div>
-        <!-- Slide #1 -->
+          <!-- End News Blog Card -->
+        </article> 
       </div>
-
-      <!-- End Slide #1 -->
-
-     <!--   <article class="card mb-3">
-              <img class="card-img-top" src="<?php //if ( has_post_thumbnail() ) { the_post_thumbnail_url('blogCover');}?>" alt="<?php //the_title_attribute();?>">
-              <div class="card-body p-5">
-                <h6 class="d-block text-muted mb-2">Fecha: <?php //the_time('Y - M - j');?></h6>
-                <h6 class="d-block text-muted mb-2">Categorías: <?php //echo get_the_category_list(',');?></h6>
-                <h6 class="d-block text-muted mb-2">Viajero: <?php //echo get_the_author();?></h6>
-                <h3 class="h5">
-                    <a href="<?php //the_permalink();?>"><?php //the_title();?></a>
-                </h3>
-                  <p><?php //the_excerpt();?></p>
-            </div>
-          </article> -->
-
-    <?php //} wp_reset_postdata();?>
-    
-    <?php } wp_reset_postdata();?>
- </div>
-
-
+    </div>  
+  <!-- End Card -->        
+  <?php } wp_reset_postdata();?>
+  </div>  
+  </div> 
+</div>
 <!-- End Bloc Testimonials -->
 
 <!-- CTA Section -->

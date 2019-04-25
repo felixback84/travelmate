@@ -27,16 +27,16 @@ get_header();
           <nav id="navBarClassic" class="navbar justify-content-center navbar-expand-lg u-header__navbar">
             <ul class="nav justify-content-center">
               <li class="nav-item u-header__nav-item mx-1">
-                <a class="btn btn-primary btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-america/')?>">América</a>
+                <a class="btn btn-info btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-america/')?>">América</a>
               </li>
               <li class="nav-item u-header__nav-item mx-1">
-                <a class="btn btn-primary btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-asia/')?>">Asia</a>
+                <a class="btn btn-info btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-asia/')?>">Asia</a>
               </li>
               <li class="nav-item u-header__nav-item mx-1">
-                <a class="btn btn-primary btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-europa/')?>">Europa</a>
+                <a class="btn btn-info btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-europa/')?>">Europa</a>
               </li>
               <li class="nav-item u-header__nav-item mx-1">
-                <a class="btn btn-primary btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-medio-oriente/')?>">Medio Oriente</a>
+                <a class="btn btn-info btn-wide mb-2" href="<?php echo site_url('/nuestros-destinos-en-medio-oriente/')?>">Medio Oriente</a>
               </li>  
             </ul>
           </nav>
@@ -113,7 +113,7 @@ get_header();
           <p><?php the_excerpt();?></p>
           <!-- End Title -->
           <!-- btn -->
-          <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
+          <a class="btn btn-outline-info btn-wide mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
           <!-- btn -->
         </div>
       </div>
@@ -171,7 +171,7 @@ get_header();
           <p><?php the_excerpt();?></p>
           <!-- End Title -->
           <!-- btn -->
-          <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
+          <a class="btn btn-outline-info btn-wide mb-2 mb-md-0 mr-sm-2" href="<?php the_permalink();?>">Descubre</a>
           <!-- btn -->
           
         </div>

@@ -7,7 +7,7 @@ get_header();
     <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Terms Section -->
-    <div class="container space-2 space-3--lg">
+    <div class="container py-3">
       <div class="row">
         <div class="col-sm-12 col-lg-12">
           <!-- Info Content -->

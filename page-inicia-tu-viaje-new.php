@@ -25,8 +25,86 @@ get_header();
               <h2 class="h3">Arma tu viaje</h2>
               <p>Los precios indicados a continuación son un presupuesto base que sirve para darte una idea del valor aproximado del viaje, y no configuran una cotización con precios fijos. Por lo tanto dichos costos están sujetos a cambios de tarifa según la fecha del viaje y la disponibilidad de los mismos.</p>
               
-            </div>    
+            </div>
 
+            <?php if (!is_user_logged_in()) {?>
+
+            <!-- nombres -->
+            <div class="row border rounded p-5 mb-2">
+              <div class="col-md-6">
+                <!-- Input -->
+                <div class="js-form-message mb-6">
+                  <label class="h6 small d-block text-uppercase">
+                    Nombre
+                    <span class="text-danger">*</span>
+                  </label>
+
+                  <div class="js-focus-state input-group form">
+                    <input type="text" class="form-control form__input" name="Nombres" required
+                   placeholder="Nombres"
+                   aria-label="Nombres"
+                   data-msg="Your password is invalid. Please try again."
+                   data-error-class="u-has-error"
+                   data-success-class="u-has-success">       
+                  </div>
+                </div>
+                <!-- End Input -->
+              </div>
+
+              <div class="col-md-6">
+                <!-- Input -->
+                <div class="js-form-message mb-6">
+                  <label class="h6 small d-block text-uppercase">
+                    Apellidos
+                    <span class="text-danger">*</span>
+                  </label>
+
+                  <div class="js-focus-state input-group form">
+                    <input type="text" class="form-control form__input" name="password" required
+                   placeholder="Apellidos"
+                   aria-label="Apellidos"
+                   data-msg="Your password is invalid. Please try again."
+                   data-error-class="u-has-error"
+                   data-success-class="u-has-success">       
+                  </div>
+                </div>
+                <!-- End Input -->
+              </div>
+
+              <div class="col-md-6">
+                <!-- Input -->
+                <div class="js-form-message mb-6">
+                  <label class="h6 small d-block text-uppercase">
+                    Email
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div class="js-focus-state input-group form">
+                    <input type="Email" class="form-control form__input" name="Email" required
+                   placeholder="Email"
+                   aria-label="Email"
+                   data-msg="Your password is invalid. Please try again."
+                   data-error-class="u-has-error"
+                   data-success-class="u-has-success">       
+                  </div>
+                </div>
+                <!-- End Input -->
+              </div>
+            </div>
+            <?php } else {
+
+              $current_user = wp_get_current_user();
+            
+              $current_user->user_login;
+              $current_user->user_email;
+              $current_user->user_firstname;
+              $current_user->user_lastname;
+              $current_user->display_name;
+              $current_user->ID;
+
+            }?>   
+            <!-- end nombres -->
+
+            <!-- datos viaje 1-->
             <div class="row border rounded p-5 mb-2">
               <div class="col-md-6">
                 <!-- Input -->
@@ -109,7 +187,9 @@ get_header();
                 <!-- End Input -->
               </div>
             </div>  
+            <!-- end datos viaje 2-->
 
+            <!-- datos viaje 3-->
             <div class="row border rounded p-5 mb-2">
               <div class="col-md-6">
                 <!-- Input -->
@@ -179,7 +259,9 @@ get_header();
                 <!-- End Input -->
               </div>
             </div>
-            
+            <!-- end datos viaje 3-->
+
+            <!-- datos viaje 4-->
             <div class="row border rounded p-5 mb-2">    
               <div class="col-md-6">
                 <!-- Input -->
@@ -259,11 +341,12 @@ get_header();
               </div>
               <!-- End Input -->
             </div>
+            <!-- end datos viaje 4-->
 
             <!-- Credit Card -->
             <div class="row">
               <div id="cotizar">
-                <button type="button" class="btn btn-block btn-wide btn-warning mb-6" onclick="cotizarValores()">
+                <button type="button" class="btn btn-outline btn-wide btn-info mb-6" onclick="cotizarValores()">
                   Cotizar ya
                 </button>
               </div>

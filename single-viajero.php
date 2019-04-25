@@ -17,7 +17,7 @@ while(have_posts()) {
 
     ?>
 
-<main id="content" role="main" class="pt-5">
+<main id="content" role="main" class="pt-5 ">
   <div class="container">
     <div class="w-lg-60 text-center mx-lg-auto mb-1">
   		<!-- Author -->
@@ -118,7 +118,7 @@ while(have_posts()) {
                   <p>Tipo: <?php echo $tipoTransporte['value'];?></p>
                   <p>Fecha y hora: <?php echo $fecha . ' - ' . $hora ;?></p>
                   <p>Ruta: <?php echo $ruta;?></p>
-                  <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
+                  <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
                     Conoce más
                     <span class="fa fa-angle-right ml-2"></span>
                   </a>
@@ -179,7 +179,7 @@ while(have_posts()) {
                   <hr class="my-2">
           
                   <p>Ciudad: <?php echo $ciudadHotel['value'];?></p>
-                  <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
+                  <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
                     Conoce más
                     <span class="fa fa-angle-right ml-2"></span>
                   </a>
@@ -240,7 +240,7 @@ while(have_posts()) {
                   <hr class="my-2">
           
                   <p>Fecha y hora: <?php echo $horaTour['value'];?></p>
-                  <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
+                  <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink();?>">
                     Conoce más
                     <span class="fa fa-angle-right ml-2"></span>
                   </a>
@@ -279,7 +279,7 @@ while(have_posts()) {
                 foreach( $product_terms as $terms ):
                   //var_dump($terms);?>
                   <div class="btn-group py-1" id="navbar-pais">
-                    <button type="button" class="btn btn-outline-primary btn-wide">
+                    <button type="button" class="btn btn-outline-info btn-wide">
                       <a class="h6" href="<?php echo '#'.get_the_title($terms->ID).$fechas;?>"><?php echo get_the_title($terms->ID);?>
                         <div class="">
                           <small class=""><?php echo $fechas ?></small> 
@@ -339,7 +339,7 @@ while(have_posts()) {
                         <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($vueloIti->ID);?></h4>
                       </span>
                       <hr class="my-2">
-                      <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($vueloIti->ID);?>">
+                      <a class="btn btn-outline-info btn-wide my-1" href="<?php echo get_the_permalink($vueloIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
                       </a>
@@ -358,7 +358,7 @@ while(have_posts()) {
                       <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-bed"></i></h3>
                       <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($hotelesIti->ID);?></h4>
                       <hr class="my-2">
-                      <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($hotelesIti->ID);?>">
+                      <a class="btn btn-outline-info btn-wide my-1" href="<?php echo get_the_permalink($hotelesIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
                       </a>
@@ -378,7 +378,7 @@ while(have_posts()) {
                       <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-map-marked-alt"></i></h3>
                       <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($toursIti->ID);?></h4>
                       <hr class="my-2">
-                      <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($toursIti->ID);?>">
+                      <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($toursIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
                       </a>
@@ -397,7 +397,7 @@ while(have_posts()) {
                       <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-map-marker-alt"></i></h3>
                       <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($lugaresIti->ID);?></h4>
                       <hr class="my-2">
-                      <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($lugaresIti->ID);?>">
+                      <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo get_the_permalink($lugaresIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
                       </a>
@@ -416,7 +416,7 @@ while(have_posts()) {
                       <h3 style="padding-right: 5px;" class="d-inline-block"><i class="fas fa-bus"></i></h3>
                       <h4 class="h5 mb-0 d-inline-block"><?php echo get_the_title($transladosIti->ID);?></h4>
                       <hr class="my-2">
-                      <a class="btn btn-outline-primary btn-wide my-1" href="<?php echo get_the_permalink($transladosIti->ID);?>">
+                      <a class="btn btn-outline-info btn-wide my-1" href="<?php echo get_the_permalink($transladosIti->ID);?>">
                         Conoce más
                         <span class="fa fa-angle-right ml-2"></span>
                       </a>

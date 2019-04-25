@@ -84,16 +84,16 @@
                 </a>
               </li>
 
-              <?php 
-              $ourCurrentUser = wp_get_current_user();
-              if (is_user_logged_in()) { ?>
-
               <li class="nav-item u-header__nav-item-btn">
                 <a class="btn btn-sm btn-primary" href="<?php echo site_url('/inicia-tu-viaje-new/');?>"
                 style="color: white; border-radius: 0px;">
                   Inicia tu viaje
                 </a>
               </li>
+
+              <?php 
+              $ourCurrentUser = wp_get_current_user();
+              if (is_user_logged_in()) { ?>
                 
               <li class="nav-item u-header__nav-item"> 
                 <a class="btn btn-sm btn-info" 
@@ -129,7 +129,7 @@
 
               <?php } else { ?>
                <li class="nav-item u-header__nav-item">
-                <a class="btn btn-sm btn-primary" href="#signupModalClassic" role="button"
+                <a class="btn btn-sm btn-info" href="#signupModalClassic" role="button"
                    data-modal-target="#signupModalClassic"
                    data-overlay-color="#151b26"
                    style= "border-radius: 0px;">
@@ -147,7 +147,7 @@
     </div>
 
     <!-- Signup Modal Window -->
-    <div id="signupModalClassic" class="js-signup-modal u-modal-window" style="width: 600px;">
+    <div id="signupModalClassic" class="js-signup-modal u-modal-window js-scrollbar" style="width: 800px; height: 550px;">
       <!-- Modal Close Button -->
       <button class="btn btn-sm btn-icon btn-text-secondary u-modal-window__close" type="button" onclick="Custombox.modal.close();">
         <span class="fas fa-times"></span>
