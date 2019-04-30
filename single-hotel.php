@@ -64,7 +64,7 @@ while(have_posts()) {
               echo $icon;
               ?>" alt="Image Description">
             <div class="media-body">
-                <?php $cantidadNoches = get_field_object('field_5c1c2c0ae5e2d');?>
+              <?php $cantidadNoches = get_field_object('field_5c1c2c0ae5e2d');?>
               <h3 class="h6 mb-0"><?php echo $cantidadNoches['label'];?></h3>
               <small class="text-secondary"><?php echo $cantidadNoches['value'];?></small>
               </div>
@@ -72,17 +72,17 @@ while(have_posts()) {
 		    </ul>
 
         <?php $urlReservar = get_field_object('field_5c9ce0c84c489');?>
-        <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo $urlReservar['value'];?>">
+        <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo $urlReservar['value'];?>">
           Reservar
         </a>
-        <?php $cantidadNoches = get_field_object('field_5c1c2c0ae5e2d');?>
-        <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="#fotoconfirma2" data-modal-target="#fotoconfirma2">
-          Confirmación
+        <a id="upload-button-hotel" class="btn btn-outline-info btn-wide mb-2 mb-md-0">Confirmación
         </a>
         <?php $urlIndicaciones = get_field_object('field_5c9ce0de4c48a');?>
-        <a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo $urlIndicaciones['value'];?>">
+        <a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo $urlIndicaciones['value'];?>">
           Indicaciones
         </a>
+        <input id="post_meta_image_hotel" type="hidden">
+        <?php $urlReservaHotel = get_field('field_5cbe7a17dcb9c',$post_id);?>
       </div>
     </div>
 
@@ -90,60 +90,27 @@ while(have_posts()) {
       <table class="table table-bordered table-hover"style="width:100%">
         <thead>
             <tr>
-              <th style="width:50%;text-align:center">Alojamientos</th>
-              <th style="width:50%;text-align:center">Confirmaciones</th>
+               <th style="width:50%;text-align:center">Alojamientos</th>
+               <th style="width:50%;text-align:center">Confirmaciones</th>
             <tr>  
         </thead>
 
         <tbody>
-
-          <?php 
-
-          $name = get_field('field_5cbf2127e6677');
-          $file = get_field('field_5cbe7a17dcb9c');?>
-        
-          <tr>
-
-          <?php if( $name ): ?>
-          <td><p><?php echo $name; ?></p></td>
-          <?php endif; 
-
-          if( $file ): ?>
-          <td><a href="<?php echo $file['url']; ?>"><?php echo $file['filename']; ?></a></td>
-          <?php endif; ?>
-
-          </tr>
-        
-        </tbody>
+          <tr class="text-center">
+            <td class="align-middle">
+              <?php $nombreConfirmacion = the_field('field_5cbf2127e6677');?>
+              <p ><?php echo $nombreConfirmacion['value'];?></p>
+            </td>
+            <td class="align-middle">
+              <a class="u-label u-label--info mb-3" href="<?php echo $urlReservaHotel['url'];?>"><?php echo get_the_title($urlReservaHotel['value']);?></a>
+            </td>
+          </tr> 
+        </tbody>     
       </table>
     </div>
   </div>
 
-  <!-- Signup Modal Window -->
-  <div id="fotoconfirma2" class="js-signup-modal u-modal-window" style="width: 600px;">
-    <!-- Modal Close Button -->
-    <button class="btn btn-sm btn-icon btn-text-secondary u-modal-window__close" type="button" onclick="Custombox.modal.close();">
-      <span class="fas fa-times"></span>
-    </button>
-    <!-- End Modal Close Button -->
 
-    <!-- Content -->
-    <div class="p-5">
-      <!-- Signin -->
-      <div id="signin" data-target-group="idForm">
-        <!-- Title -->
-        <header class="text-center mb-5">
-          <h2 class="h4 mb-0">Confirmación de alojamientos</h2>
-          <p>Suba imagen (jpg, jpeg, png) de hasta 2 Megas.</p>
-        </header>
-        <hr class="my-5">
-        <?php echo do_shortcode('[wpforms id="1734"]');?>
-        <!-- End Title -->
-      </div>
-      <!-- End Signin -->
-    </div>
-    <!-- End Content -->
-  </div>
 
 <?php }
 get_footer();

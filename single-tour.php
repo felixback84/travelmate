@@ -70,13 +70,15 @@ while(have_posts()) {
 	        <div class="col-lg-9 order-lg-1">
 	          	<div class="pr-lg-4">
 	          		<div class="mb-2 d-inline-block">
-	          		<?php $indicacionesTour = get_field_object('field_5c9d529fccdc1');?>
-	            		<a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="<?php echo $indicacionesTour['value'];?>">Reservar</a>
+	          			<?php $indicacionesTour = get_field_object('field_5c9d529fccdc1');?>
+	            		<a class="btn btn-outline-info btn-wide mb-2 mb-md-0" href="<?php echo $indicacionesTour['value'];?>">Reservar</a>
 	          		</div>
 	          		<div class="mb-2 d-inline-block">
-	          		<?php $indicacionesTour = get_field_object('field_5c9d529fccdc1');?>
-	            		<a class="btn btn-outline-primary btn-wide mb-2 mb-md-0" href="#fotoconfirma3" data-modal-target="#fotoconfirma3">Confirmación</a>
+	            		<a id="upload-button-tour" class="btn btn-outline-info btn-wide mb-2 mb-md-0">Confirmación
+        				</a>
 	          		</div>
+	          		<input id="post_meta_image_tour" type="hidden">
+	          		<?php $urlReservaTour = get_field('field_5cbe7a404730e',$post_id);?>
 	            	<p><?php the_content();?></p>
 	        	</div>
 	      	</div>
@@ -85,61 +87,28 @@ while(have_posts()) {
 
 	    <div class="py-1">
 		    <table class="table table-bordered table-hover"style="width:100%">
-		        <thead>
-		            <tr>
-		               <th style="width:50%;text-align:center">Alojamientos</th>
-		               <th style="width:50%;text-align:center">Confirmaciones</th>
-		            <tr>  
-		        </thead>
+        <thead>
+            <tr>
+               <th style="width:50%;text-align:center">Alojamientos</th>
+               <th style="width:50%;text-align:center">Confirmaciones</th>
+            <tr>  
+        </thead>
 
-		        <tbody>
-
-		          	<?php 
-
-		          	$name = get_field('field_5cbf2c4ac9874');
-		          	$file = get_field('field_5cbe7a404730e');?>
-		        
-			        <tr>
-
-		          	<?php if( $name ): ?>
-		          		<td><p><?php echo $name; ?></p></td>
-		          	<?php endif; 
-
-		          	if( $file ): ?>
-		          		<td><a href="<?php echo $file['url']; ?>"><?php echo $file['filename']; ?></a></td>
-		          	<?php endif; ?>
-
-			        </tr>    
-		    </table>
+        <tbody>
+          <tr class="text-center">
+            <td class="align-middle">
+              <?php $nombreConfirmacion = the_field('field_5cbf2c4ac9874');?>
+              <p ><?php echo $nombreConfirmacion['value'];?></p>
+            </td>
+            <td class="align-middle">
+              <a class="u-label u-label--info mb-3" href="<?php echo $urlReservaTour['url'];?>"><?php echo get_the_title($urlReservaTour['value']);?></a>
+            </td>
+          </tr> 
+        </tbody>     
+      </table>
 	    </div>	
 	</main>
  	<!-- ========== END MAIN CONTENT ========== -->
-
- 	<!-- Signup Modal Window -->
-    <div id="fotoconfirma3" class="js-signup-modal u-modal-window" style="width: 600px;">
-        <!-- Modal Close Button -->
-        <button class="btn btn-sm btn-icon btn-text-secondary u-modal-window__close" type="button" onclick="Custombox.modal.close();">
-            <span class="fas fa-times"></span>
-        </button>
-        <!-- End Modal Close Button -->
-
-        <!-- Content -->
-        <div class="p-5">
-        <!-- Signin -->
-            <div id="signin" data-target-group="idForm">
-            <!-- Title -->
-	            <header class="text-center mb-5">
-	                <h2 class="h4 mb-0">Confirmación de excursiones</h2>
-	                <p>Suba imagen (jpg, jpeg, png) de hasta 2 Megas.</p>
-	            </header>
-	            <hr class="my-5">
-	            <?php echo do_shortcode('[wpforms id="1735"]');?>
-	            <!-- End Title -->
-            </div>
-            <!-- End Signin -->
-        </div>
-        <!-- End Content -->
-    </div>
     
 <?php }
 get_footer();

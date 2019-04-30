@@ -1,3 +1,5 @@
+<input id="post_id" type="hidden" value="<?php echo get_the_ID() ?>">
+<input id="ajax_post" type="hidden" value="<?php echo admin_url('admin-ajax.php'); ?>">
  <!-- ========== FOOTER ========== -->
   <footer class="bg-dark">
     <div class="container space-2">
@@ -148,8 +150,8 @@
   #myBtn {
     display: none;
     position: fixed;
-    bottom: 20px;
-    right: 30px;
+    bottom: 50px;
+    right: 90px;
     z-index: 99;
     font-size: 18px;
     border: none;
@@ -165,7 +167,6 @@
     background-color: #555;
   }
 </style>
-
   <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-arrow-up"></i>
 </button>
 

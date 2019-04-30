@@ -6694,4 +6694,13 @@ button:focus {
   text-color: #000042;
 }
 
+/*------------------------------------
+  Media upload
+------------------------------------*/
+.media-router>a.active:first-child{
+  background-color: red;
+}
+.media-router>a.active:last-child {
+  background-color: green;
+}
 

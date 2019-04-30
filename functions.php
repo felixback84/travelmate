@@ -27,10 +27,11 @@ function travelmate_files() {
  wp_enqueue_style('9-space-template', get_template_directory_uri() . '/assets/css/theme.css', array(), 'false', 'all');
 
  /*<!-- JS Global Compulsory -->*/
- //wp_enqueue_media();
+ wp_enqueue_media();
  wp_enqueue_script('0-Google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyA-tHLXRE7FJKliACGAjP4Jgb0aWz2VUiE', NULL, '1.0', true );
  wp_enqueue_script('0a-Google-Maps', get_theme_file_uri('/js/GoogleMaps.js') , array('jquery'), 'false' , true );
- //wp_enqueue_script('0b-files-upload', get_theme_file_uri('/js/files-upload.js'), array( 'jquery' ), '1.0.0', true);
+
+ wp_enqueue_script('0b-files-upload', get_theme_file_uri('/js/files-upload.js'), array( 'jquery' ), '1.0.0', true);
 
  wp_enqueue_script('1-vendor-jquery.min', get_theme_file_uri('/js/vendor/jquery/dist/jquery.min.js') , array('jquery'), 'false' , true );
  wp_enqueue_script('2-vendor-jquery-migrate.min', get_theme_file_uri('/js/vendor/jquery-migrate/dist/jquery-migrate.min.js') , array('jquery'), 'false' , true );
@@ -296,6 +297,7 @@ function my_get_posts()
  add_action('wp_ajax_my_get_posts1', 'my_get_posts1');
  add_action('wp_ajax_nopriv_my_get_posts1', 'my_get_posts1');
 
+//impresion de tabla del cotizador
  function my_get_posts2() {
  ?>
 
@@ -431,12 +433,42 @@ function my_get_posts()
  add_action('wp_ajax_my_get_posts2', 'my_get_posts2');
  add_action('wp_ajax_nopriv_my_get_posts2', 'my_get_posts2');
 
- function my_ruta() {
+ //recepción de datos del formulario
 
-//traer todos los datos del post
-$idRuta = $_POST['ruta'];
-$personas = $_POST['personas'];
-$estiloViaje = $_POST['estiloViaje'];
+ function my_ruta() {
+  $datos = [];
+  echo "<script> alert('123')</script>";
+  //traer todos los datos del post
+  $idRuta = $_POST['ruta'];
+  $personas = $_POST['personas'];
+  $nombres = $_POST['nombres'];
+  $apellidos = $_POST['apellidos'];
+  $email = $_POST['email'];
+  $continente = $_POST['continente'];
+  $destino = $_POST['destino'];
+  $nombre_de_ruta = $_POST['nombre_de_ruta'];
+  $estiloViaje = $_POST['estiloViaje'];
+  $temporada = $_POST['temporada'];
+  $adultos = $_POST['adultos'];
+  $ninos = $_POST['ninos'];
+  $info_adicional = $_POST['info_adicional'];
+  $motivo_viaje = $_POST['motivo_viaje'];
+  //echo "<script> alert('".$nombres."')</script>";
+
+  //datos que se va a utilizar para el envio del email
+
+  $datos['nombres']=$nombres;
+  $datos['apellidos']=$apellidos;
+  $datos['email']=$email;
+  $datos['continente']=$continente;
+  $datos['destino']=$destino;
+  $datos['nombre_de_ruta']=$nombre_de_ruta;
+  $datos['estiloViaje']=$estiloViaje;
+  $datos['temporada']=$temporada;
+  $datos['adultos']=$adultos;
+  $datos['ninos']=$ninos;
+  $datos['info_adicional']=$info_adicional;
+  $datos['motivo_viaje']=$motivo_viaje;
 
 //filtrar los datos "estilo de viaje" ***
 if($estiloViaje == "Básico"){
@@ -474,6 +506,7 @@ $valorActividades = $valorActividades * $personas;
 $valorTotal = $valorTotal * $personas;
 $comision = $comision * $personas;
 
+
   //mostrar los datos **
   echo "<script>
 
@@ -485,28 +518,94 @@ $comision = $comision * $personas;
       $('#comision').text('$".$comision."');
 
     </script>"; 
-           
+  customMailTravel($datos);  
+  die();         
  }
 
  add_action('wp_ajax_my_ruta', 'my_ruta');
  add_action('wp_ajax_nopriv_my_ruta', 'my_ruta');
 
- /* Envio de mails a usuarios que se registran 
+ /* Envio de mails a usuarios que se registran */
+function customMailTravel($datos){
 
- function customMailNewUser($email, $userName){
+  //declararlos para utilizarlos
+  $nombres = $datos['nombres'];
+  $apellidos = $datos['apellidos'];
+  //$email = $datos['email'];
+  $email = "carlos.talero.jacome@gmail.com";
+  //$emailAdmin = "portalwebtravelmate@gmail.com";
+  $continente = $datos['continente'];
+  $destino = $datos['destino'];
+  $nombre_de_ruta = $datos['nombre_de_ruta'];
+  $estiloViaje = $datos['estiloViaje'];
+  $temporada = $datos['temporada'];
+  $adultos = $datos['adultos'];
+  $ninos = $datos['ninos'];
+  $info_adicional = $datos['info_adicional'];
+  $motivo_viaje = $datos['motivo_viaje'];
+  echo "<script> alert('".$nombres."')</script>";
+
+  echo '<script> alert("mail")</script>';
   $to = $email;
-  $subject = 'Bienvenida a Travelmate.';
+  $subject = 'Bienvenida a Travelmate'.$nombres.' '.$apellidos ;
   $message = 'Te damos la bienvenida a www.travelmate.com.co';
-  $message .= 'Nombre de usuario: '. $userName . "\r\n\r\n";
-  $message .= '<' . network_site_url(). ">\r\n\r\n";
-  
-  if(wp_mail( $to,  $subject, $message) ){
-    //echo "email enviado";
+  $message .= '<p style="color:red;">Nombre de usuario: ';
+  $message .= $nombres;
+  $message .= '</p>';
+
+  $result = wp_mail( $to,  $subject, $message,"From: Travelmate");
+  if( $result ){
+    //echo "sent";
   }else{
-    //echo "email no enviado";
+    //echo "fail mail";
+    //echo $result;
   }
 }
 
+function wpse27856_set_content_type(){
+    return "text/html";
+}
+add_filter( 'wp_mail_content_type','wpse27856_set_content_type' );
+
+
+//guardar confirmación post vuelo
+function my_upload_afc_vuelo()
+{
+  $idImg = $_POST['id_img'];
+  $idPost = $_POST['id_post'];
+  echo "<script> alert('".$idPost."')</script>";
+
+  update_field("imagen_vuelo", $idImg, $idPost);
+}
+
+ add_action('wp_ajax_my_upload_afc_vuelo', 'my_upload_afc_vuelo');
+ add_action('wp_ajax_nopriv_my_upload_afc_vuelo', 'my_upload_afc_vuelo');
+
+//guardar confirmación post hotel
+ function my_upload_afc_hotel()
+{
+  $idImg = $_POST['id_img'];
+  $idPost = $_POST['id_post'];
+  echo "<script> alert('".$idPost."')</script>";
+
+  update_field("imagenes_hoteles", $idImg, $idPost);
+}
+
+ add_action('wp_ajax_my_upload_afc_hotel', 'my_upload_afc_hotel');
+ add_action('wp_ajax_nopriv_my_upload_afc_hotel', 'my_upload_afc_hotel');
+
+//guardar confirmación post tour
+ function my_upload_afc_tour()
+{
+  $idImg = $_POST['id_img'];
+  $idPost = $_POST['id_post'];
+  echo "<script> alert('".$idPost."')</script>";
+
+  update_field("imagenes_tours", $idImg, $idPost);
+}
+
+ add_action('wp_ajax_my_upload_afc_tour', 'my_upload_afc_tour');
+ add_action('wp_ajax_nopriv_my_upload_afc_tour', 'my_upload_afc_tour');
 ?>
 
 

@@ -41,6 +41,7 @@ get_header();
 
                   <div class="js-focus-state input-group form">
                     <input type="text" class="form-control form__input" name="Nombres" required
+                   id ="Nombres" 
                    placeholder="Nombres"
                    aria-label="Nombres"
                    data-msg="Your password is invalid. Please try again."
@@ -60,7 +61,8 @@ get_header();
                   </label>
 
                   <div class="js-focus-state input-group form">
-                    <input type="text" class="form-control form__input" name="password" required
+                    <input type="text" class="form-control form__input" name="Apellidos" required
+                   id="Apellidos" 
                    placeholder="Apellidos"
                    aria-label="Apellidos"
                    data-msg="Your password is invalid. Please try again."
@@ -79,7 +81,8 @@ get_header();
                     <span class="text-danger">*</span>
                   </label>
                   <div class="js-focus-state input-group form">
-                    <input type="Email" class="form-control form__input" name="Email" required
+                    <input type="Email" class="form-control form__input" name="email" required
+                   id="Email" 
                    placeholder="Email"
                    aria-label="Email"
                    data-msg="Your password is invalid. Please try again."
@@ -93,15 +96,17 @@ get_header();
             <?php } else {
 
               $current_user = wp_get_current_user();
-            
-              $current_user->user_login;
-              $current_user->user_email;
-              $current_user->user_firstname;
-              $current_user->user_lastname;
-              $current_user->display_name;
-              $current_user->ID;
+        
+              $nombres = $current_user->user_firstname;
+              $apellidos = $current_user->user_lastname;
+              $email = $current_user->user_email;
 
-            }?>   
+            }?> 
+
+            <input type="hidden" id="nombre_logueado" value="<?php echo $nombres;?>">
+            <input type="hidden" id="apellidos_logueado" value="<?php echo $apellidos;?>">
+            <input type="hidden" id="email_logueado" value="<?php echo $email;?>"> 
+
             <!-- end nombres -->
 
             <!-- datos viaje 1-->
@@ -116,6 +121,7 @@ get_header();
 
                   <div class="js-focus-state input-group form">
                     <select class="custom-select" name="destino_regional" required
+                           id="Continente"
                            placeholder="Destino regional"
                            aria-label="Destino regional"
                            data-msg="Please enter a valid address."
@@ -149,6 +155,7 @@ get_header();
 
                   <div class="js-focus-state input-group form">
                     <select id="rutaRegional" class="custom-select" name="ruta_regional" required
+
                            placeholder="Ruta regional"
                            aria-label="Ruta regional"
                            data-msg="Por favor escoje una ruta válida."
@@ -205,6 +212,7 @@ get_header();
 
                   <div class="js-focus-state input-group form">
                     <select class="custom-select" name="categoria" required
+                           id="EstiloViaje"
                            placeholder="Categoría"
                            aria-label="Categoría"
                            data-msg="Please enter a valid address."
@@ -314,7 +322,8 @@ get_header();
 
                   <div class="js-focus-state input-group form">
                     <textarea class="form-control form__input" name="apartment" required
-                           name="message" rows="5" cols="30">
+                           name="message" rows="5" cols="30"
+                           id="infoViaje">
                     </textarea>       
                   </div>
                 </div>
@@ -333,7 +342,8 @@ get_header();
 
                   <div class="js-focus-state input-group form">
                     <textarea class="form-control form__input" name="apartment" required
-                           name="message" rows="5" cols="30">
+                           name="message" rows="5" cols="30"
+                           id="motivoViaje">
                     </textarea>       
                   </div>
                 </div>
@@ -365,8 +375,7 @@ get_header();
 <script type="text/javascript">
 
   $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  $('[data-toggle="tooltip"]').tooltip()})
   
   function cargarCategorias(valor){
     //alert(valor);
@@ -389,7 +398,7 @@ get_header();
     //alert(valor);
   }
 
-    function cargarCategorias1(valor){
+  function cargarCategorias1(valor){
     //alert(valor);
     //$("#rutaRegional").remove();
     $("#destino").text(valor);
@@ -408,7 +417,6 @@ get_header();
         //alert('complete');
       }
     });
-    
   }
 
   function cargarCategorias2(){
@@ -429,32 +437,66 @@ get_header();
   }
   
   function cotizarValores(){
-  //  ruta, cantidad personas, estilo viaje--
+    
+    // datos de usuarios
+    nombres= $("#Nombres").text();
+    if(nombres == ''){
+    nombres= $("#nombre_logueado").val();
+    }
+    apellidos= $("#Apellidos").text();
+    if(apellidos == ''){
+    apellidos= $("#apellidos_logueado").val();
+    }
+    email= $("#Email").text();
+    if(email == ''){
+    email= $("#email_logueado").val(); 
+    }
  
- valorRuta = $("#rutaRegional1 option:selected").val();
- numeroNinos = $("#Numero_ninos").val();
- numeroAdultos = $("#Numero_adultos").val();
- totalPersonas = parseInt(numeroNinos) + parseInt(numeroAdultos);
- estiloViaje = $("#estilo_viaje").text();
- $("#cantidad_personas").text(totalPersonas);
-//valorRuta = 828;
+    // ruta, cantidad personas, estilo viaje
+    temporada= $("#temporada_viaje").text(); //--
+    numeroAdultos = $("#Numero_adultos").val(); //--
+    numeroNinos = $("#Numero_ninos").val(); //--
+    valorRuta = $("#rutaRegional1 option:selected").val(); //---
+    estiloViaje = $("#estilo_viaje").text(); //--
+    totalPersonas = parseInt(numeroNinos) + parseInt(numeroAdultos);
+     
+    // datos complementarios para email 
+    continente= $("#Continente option:selected").text();
+    destino= $("#destino").text(); 
+    ruta= $("#ruta").text(); 
+    infoAdicional= $("#infoViaje").val();
+    motivoViaje= $("#motivoViaje").val();
+
+    $("#cantidad_personas").text(totalPersonas);
+      //valorRuta = 828;
     $.ajax({
       type: 'POST',
       url: "<?php echo admin_url('admin-ajax.php'); ?>",
       data: {
+
         'action': 'my_ruta',
         'ruta': valorRuta,
         'personas' : totalPersonas,
+        'nombres' : nombres,
+        'apellidos' : apellidos,
+        'email': email,
+        'continente': continente,
+        'destino': destino,
+        'nombre_de_ruta': ruta,
         'estiloViaje' : estiloViaje,
+        'temporada': temporada,
+        'adultos': numeroAdultos,
+        'ninos': numeroNinos,
+        'info_adicional': infoAdicional,
+        'motivo_viaje': motivoViaje,
       },
-      success: function(data, textStatus, XMLHttpRequest)      {
+      success: function(data, textStatus, XMLHttpRequest){
         $("#mostrar").append(data);
       },
-      complete: function(XMLHttpRequest, textStatus)      {
+      complete: function(XMLHttpRequest, textStatus){
         //alert('complete');
       }
-    });
-
+    }); 
   }
 </script>
 <?php  } //}
