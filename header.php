@@ -24,9 +24,9 @@
                         echo $icon;
                         ?>" alt="Logo" style="height: 40px; width: 240px ">
               <img class="u-header__navbar-brand-mobile" src="<?php 
-                        $icon = wp_get_attachment_image_url('1549','',true );
+                        $icon = wp_get_attachment_image_url('1548','',true );
                         echo $icon;
-                        ?>" alt="Logo" style="height: 40px;">
+                        ?>" alt="Logo" style="height: 40px; width: 240px">
             </a>
           </div>
           <!-- End Logo -->
@@ -164,7 +164,7 @@
             <p>Llene estos campos para ingresar.</p>
           </header>
           <hr class="my-5">
-          <?php echo do_shortcode('[wpforms id="1598" title="false" description="false"]');?>
+          <?php echo do_shortcode('[wpforms id="1803" title="false" description="false"]');?>
           <!-- End Title -->
           <hr class="my-5">
           <div class="text-center mb-3">
@@ -188,7 +188,7 @@
             <p>Llene todos los campos para iniciar.</p>
           </header>
           <hr class="my-5">
-          <?php echo do_shortcode('[wpforms id="1597" title="false" description="false"]'); ?>
+          <?php echo do_shortcode('[wpforms id="1802" title="false" description="false"]'); ?>
           <!-- End Title -->
           <hr class="my-5">
           <div class="text-center mb-3">

@@ -86,26 +86,28 @@ while(have_posts()) {
 	    </div>
 
 	    <div class="py-1">
+	    	<?php  if (!$urlReservaTour == NULL) {?>
 		    <table class="table table-bordered table-hover"style="width:100%">
-        <thead>
-            <tr>
-               <th style="width:50%;text-align:center">Alojamientos</th>
-               <th style="width:50%;text-align:center">Confirmaciones</th>
-            <tr>  
-        </thead>
+		        <thead>
+		            <tr>
+		               <th style="width:50%;text-align:center">Alojamientos</th>
+		               <th style="width:50%;text-align:center">Confirmaciones</th>
+		            <tr>  
+		        </thead>
 
-        <tbody>
-          <tr class="text-center">
-            <td class="align-middle">
-              <?php $nombreConfirmacion = the_field('field_5cbf2c4ac9874');?>
-              <p ><?php echo $nombreConfirmacion['value'];?></p>
-            </td>
-            <td class="align-middle">
-              <a class="u-label u-label--info mb-3" href="<?php echo $urlReservaTour['url'];?>"><?php echo get_the_title($urlReservaTour['value']);?></a>
-            </td>
-          </tr> 
-        </tbody>     
-      </table>
+		        <tbody>
+		          <tr class="text-center">
+		            <td class="align-middle">
+		              <?php $nombreConfirmacion = the_field('field_5cbf2c4ac9874');?>
+		              <p ><?php echo $nombreConfirmacion['value'];?></p>
+		            </td>
+		            <td class="align-middle">
+		              <a class="u-label u-label--info mb-3" href="<?php echo $urlReservaTour['url'];?>"><?php echo get_the_title($urlReservaTour['value']);?></a>
+		            </td>
+		          </tr> 
+		        </tbody>     
+		    </table>
+		    <?php }?>
 	    </div>	
 	</main>
  	<!-- ========== END MAIN CONTENT ========== -->

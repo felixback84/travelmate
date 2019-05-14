@@ -1,7 +1,7 @@
 <input id="post_id" type="hidden" value="<?php echo get_the_ID() ?>">
 <input id="ajax_post" type="hidden" value="<?php echo admin_url('admin-ajax.php'); ?>">
  <!-- ========== FOOTER ========== -->
-  <footer class="bg-dark">
+  <footer style="background-color: #000042">
     <div class="container space-2">
       <div class="row justify-content-md-between">
         <div class="col-6 col-md-3 col-lg-2 order-lg-3 mb-7 mb-lg-0">
@@ -154,7 +154,7 @@
     right: 90px;
     z-index: 99;
     font-size: 18px;
-    border: none;
+    border: solid 1px
     outline: none;
     background-color: #000042;
     color: white;

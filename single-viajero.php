@@ -464,7 +464,7 @@ while(have_posts()) {
                   <div class="col-lg-6">
                     <!-- Signup Form -->
                     <div class="bg-white shadow-sm p-6">
-                      <?php echo do_shortcode('[wpforms id="1600" title="false" description="false"]'); ?>
+                      <?php echo do_shortcode('[wpforms id="1801" title="false" description="false"]'); ?>
                       
                     </div>
                     <!-- End Signup Form -->

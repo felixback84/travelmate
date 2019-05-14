@@ -6,7 +6,7 @@ get_header();
 <!-- inicio -->
 <main id="content" role="main">
   <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pageBannernew' );?>
-  <div id="post" class="gradient-overlay-half-dark-v3 bg-img-hero" style="background-image: url('<?php echo $thumb['0'];?>'); height: 40vh ;">
+  <div id="post" class="gradient-overlay-half-dark-v3 bg-img-hero" style="background-image: url('<?php echo $thumb['0'];?>'); height: 50vh ;">
   </div>  
   <div class="bg-gray-100">
     <div class="container space-1">

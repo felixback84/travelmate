@@ -87,9 +87,9 @@ get_header();
         $preciosRegion = get_field('precio_destino_regional');
         ?>
 
-  <div class="container space-1 space-1--lg">         
+  <div class="container py-3">         
     <div class="row align-items-lg-center">          
-      <div class="col-md-6 order-md-2 mb-5 mb-md-0">
+      <div class="col-md-6 order-md-2 mb-md-0 order-2">
         <div class="mb-2">
           <!-- Title -->
           <h3><a href="<?php the_permalink();?>"><?php the_title();?></a>
@@ -118,7 +118,7 @@ get_header();
         </div>
       </div>
       <div class="col-md-6 order-md-1">
-        <div class="pr-lg-4">
+        <div class="pr-lg-4 pb-1">
           <img class="img-fluid bg-white shadow p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('pageDestinoCover');}?>"alt="<?php the_title_attribute()?>">
         </div>
       </div>
@@ -146,9 +146,9 @@ get_header();
         $preciosDestino = get_field('precio_destino');
         ?>
 
-  <div class="container space-1 space-1--lg">         
+  <div class="container py-3">         
     <div class="row align-items-lg-center">          
-      <div class="col-md-6 order-md-2 mb-5 mb-md-0">
+      <div class="col-md-6 order-md-2 mb-md-0 order-2">
         <div class="mb-2">
           <!-- Title -->
           <h3>
@@ -177,7 +177,7 @@ get_header();
         </div>
       </div>
       <div class="col-md-6 order-md-1">
-        <div class="pr-lg-4">
+        <div class="pr-lg-4 pb-1">
           <img class="img-fluid bg-white shadow p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('pageDestinoCover');}?>"alt="<?php the_title_attribute()?>">
         </div>
       </div>

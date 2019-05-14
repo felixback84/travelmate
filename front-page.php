@@ -5,8 +5,8 @@ get_header();
 ?>
 <!-- Header Hero Section -->
 <main id="content" role="main">
-  <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pageBannernew' );?>
-  <div id="post" class="gradient-overlay-half-dark-v3 bg-img-hero" style="background-image: url('<?php echo $thumb['0'];?>')">
+  <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pageBanner' );?>
+  <div id="post" class="gradient-overlay-half-dark-v3 bg-img-hero" style="height: 50vh; background-image: url('<?php echo $thumb['0'];?>')">
     <!-- Main Content -->
     <div class="d-lg-flex align-items-lg-center">
       <div class="container space-2 space-0--lg mt-lg-8">
@@ -16,7 +16,7 @@ get_header();
             <h1 class="display-4 font-size-28--md-down text-white">Explora el mundo con nosotros</h1>
             <!-- End Title -->
             <div class="pb-6">
-              <a class="btn btn-info" href="">Comienza con Travelmate</a>
+              <a class="btn btn-info" href="<?php echo site_url('/como-funciona/');?>">Comienza con Travelmate</a>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ get_header();
 <div class="container py-3">
   <div class="js-slick-carousel u-slick u-slick--gutters-3 u-slick--equal-height u-slick--pagination-modern"
      data-slides-show="3"
-     data-slides-scroll="2"
+     data-slides-scroll="1"
      data-pagi-classes="u-slick__pagination mt-2 mr-1"
      data-responsive='[{
        "breakpoint": 992,
@@ -50,10 +50,12 @@ get_header();
 
     <?php 
     $destinosAndRegiones = new WP_Query(array(
+
     'posts_per_page' => -1,
     'post_type' => array('destino', 'region'),
-    'orderby' => 'title',
-    'order'   => 'ASC',
+    //'orderby' => 'title',
+    //'order'   => 'ASC',
+    'orderby'   => 'rand',
     ));?>
 
     <!--  destinations-->
@@ -77,7 +79,7 @@ get_header();
             <small class="text-secondary"> por persona</small>
           </span>
           <!-- End Pricing -->
-          <a class="btn btn-block btn-outline-info" href="">Descubre</a>      
+          <a class="btn btn-block btn-outline-info" href="<?php the_permalink();?>">Descubre</a>      
         </div>
       </article>
     </div>  
@@ -97,7 +99,7 @@ get_header();
       </div>
       <div class="col-lg-3 col-md-3">
         <span class="input-group-append form__append">
-          <button type="submit" class="btn btn-block btn-primary btn-wide">Contáctanos ya</button>
+          <a class="btn btn-block btn-primary" href="<?php echo site_url('/contactenos/')?>">Contáctanos ya</a>
         </span>
       </div>     
     </div>
@@ -272,7 +274,7 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
   <div class="container">
   <div class="js-slick-carousel u-slick u-slick--gutters-3 u-slick--equal-height u-slick--pagination-modern"
      data-slides-show="2"
-     data-slides-scroll="2"
+     data-slides-scroll="1"
      data-pagi-classes="u-slick__pagination mt-2 mr-1"
      data-responsive='[{
        "breakpoint": 992,
@@ -292,6 +294,7 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
       array(
 
       'posts_per_page' => -1,
+      'orderby'   => 'rand',
       'post_type' => 'post',
       'tax_query' =>  array(
                             array(
@@ -346,7 +349,7 @@ $valorTarifa = get_field('valor_tarifa_por_persona_home');
 
     <div class="col-md-6">
       <!-- Form -->
-      <?php echo do_shortcode('[wpforms id="1605"]'); ?>
+      <?php echo do_shortcode('[wpforms id="1804"]'); ?>
       <!-- End Form -->
     </div>
   </div>

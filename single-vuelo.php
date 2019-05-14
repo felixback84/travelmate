@@ -77,7 +77,7 @@ while(have_posts()) {
         </div>	
     	</div>
 	  </div>
-
+    <?php  if (!$urlReservaVuelo == NULL) {?>
     <table class="table table-bordered table-hover"style="width:100%">
       <thead>
           <tr>
@@ -90,7 +90,7 @@ while(have_posts()) {
         <tr class="text-center">
           <td class="align-middle">
             <?php $nombreConfirmacion = the_field('field_5cc4d1f4d0f5e');?>
-            <p ><?php echo $nombreConfirmacion['value'];?></p>
+            <p><?php echo $nombreConfirmacion['value'];?></p>
           </td>
           <td class="align-middle">
             <a class="u-label u-label--info mb-3" href="<?php echo $urlReservaVuelo['url'];?>"><?php echo get_the_title($urlReservaVuelo['value']);?></a>
@@ -98,6 +98,7 @@ while(have_posts()) {
         </tr> 
       </tbody>     
     </table>
+   <?php }?>
   </div>	
 </main>
 <!-- ========== END MAIN CONTENT ========== -->

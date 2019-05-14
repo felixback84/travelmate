@@ -14,7 +14,7 @@ get_header();
         <h2 class="h3">Dinos que opinas o a donde quieres ir:</h2>
         <p>Cualquier pregunta que tengas no dudes en contactarnos.</p>
        
-        <?php echo do_shortcode('[wpforms id="1606" title="false" description="false"]'); ?>
+        <?php echo do_shortcode('[wpforms id="1800" title="false" description="false"]'); ?>
       
       </div>
       <!-- End Contacts Section -->

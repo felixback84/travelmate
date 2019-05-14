@@ -130,15 +130,15 @@ Custom terms for taxonomy in cpt
 
 function travelmate_get_terms($postID, $term){
 
-	$termsList = wp_get_post_terms($postID, $term, array(
+  $termsList = wp_get_post_terms($postID, $term, array(
     'orderby' => 'term_order', 'order' => 'ASC'
     )
      );
-	$output = '';
+  $output = '';
 
         $i = 0;
         foreach($termsList as $term){
-        	$i++;
+          $i++;
             if ($i > 1){ $output .= ', '; }
                 $output .= '<a href ="'. get_term_link($term) . '">'. $term -> name . '</a>';
               }
@@ -395,16 +395,10 @@ function my_get_posts()
     </div>
     <!-- End Total -->
     <!-- Credit Card -->
-    <div id="epayCo">
-
+    <!-- <div id="epayCo">
       <script>
-
-
-      var comision = document.getElementById("valortotal").value;
-
-
+        var comision = document.getElementById("valortotal").value;
       </script>
-
       <form>
         <script
             src="https://checkout.epayco.co/checkout.js"
@@ -420,8 +414,8 @@ function my_get_posts()
             data-epayco-response="https://ejemplo.com/respuesta.html"
             data-epayco-confirmation="https://ejemplo.com/confirmacion">
         </script>
-    </form>
-    </div>
+      </form>
+    </div> -->
     <!-- End Credit Card -->        
    
   </div>
@@ -437,7 +431,7 @@ function my_get_posts()
 
  function my_ruta() {
   $datos = [];
-  echo "<script> alert('123')</script>";
+  //echo "<script> alert('123')</script>";
   //traer todos los datos del post
   $idRuta = $_POST['ruta'];
   $personas = $_POST['personas'];
@@ -453,7 +447,7 @@ function my_get_posts()
   $ninos = $_POST['ninos'];
   $info_adicional = $_POST['info_adicional'];
   $motivo_viaje = $_POST['motivo_viaje'];
-  //echo "<script> alert('".$nombres."')</script>";
+  //echo "<script> alert(' email en funcion:".$email."')</script>";
 
   //datos que se va a utilizar para el envio del email
 
@@ -518,22 +512,53 @@ $comision = $comision * $personas;
       $('#comision').text('$".$comision."');
 
     </script>"; 
-  customMailTravel($datos);  
-  die();         
+
+   //definir elementos necesarios para enviar el correo
+   //este if te sirve como ejemplo para definir los otros datos veas como requeridos para enviar el correo.
+
+$datos['nombres']=$nombres;
+  $datos['apellidos']=$apellidos;
+  $datos['email']=$email;
+  $datos['continente']=$continente;
+  $datos['destino']=$destino;
+  $datos['nombre_de_ruta']=$nombre_de_ruta;
+  $datos['estiloViaje']=$estiloViaje;
+  $datos['temporada']=$temporada;
+  $datos['adultos']=$adultos;
+  $datos['ninos']=$ninos;
+  $datos['info_adicional']=$info_adicional;
+  $datos['motivo_viaje']=$motivo_viaje;
+
+
+   if(!empty($datos['nombres']) and
+      !empty($datos['apellidos']) and
+      !empty($datos['email']) and
+      !empty($datos['continente']) and
+      !empty($datos['nombre_de_ruta']) and
+      !empty($datos['estiloViaje']) and
+      !empty($datos['temporada']) and
+      !empty($datos['adultos']) and
+      !empty($datos['ninos']) and
+      !empty($datos['motivo_viaje'])){
+
+    customMailTravel($datos);   
+   } else {
+     echo '<script> alert("Por favor llene todos los campos")</script>';
+   }
+  
+     die();   
  }
 
  add_action('wp_ajax_my_ruta', 'my_ruta');
  add_action('wp_ajax_nopriv_my_ruta', 'my_ruta');
 
- /* Envio de mails a usuarios que se registran */
+ /* Envio de mails a usuarios que cotizan */
 function customMailTravel($datos){
 
   //declararlos para utilizarlos
   $nombres = $datos['nombres'];
   $apellidos = $datos['apellidos'];
-  //$email = $datos['email'];
-  $email = "carlos.talero.jacome@gmail.com";
-  //$emailAdmin = "portalwebtravelmate@gmail.com";
+  $email = $datos['email'];
   $continente = $datos['continente'];
   $destino = $datos['destino'];
   $nombre_de_ruta = $datos['nombre_de_ruta'];
@@ -543,22 +568,67 @@ function customMailTravel($datos){
   $ninos = $datos['ninos'];
   $info_adicional = $datos['info_adicional'];
   $motivo_viaje = $datos['motivo_viaje'];
-  echo "<script> alert('".$nombres."')</script>";
+  //echo "<script> alert('email en funct envio:".$email."')</script>";
 
-  echo '<script> alert("mail")</script>';
-  $to = $email;
-  $subject = 'Bienvenida a Travelmate'.$nombres.' '.$apellidos ;
-  $message = 'Te damos la bienvenida a www.travelmate.com.co';
-  $message .= '<p style="color:red;">Nombre de usuario: ';
-  $message .= $nombres;
-  $message .= '</p>';
+  $toAdmin = 'portalwebtravelmate@gmail.com'; 
+  $to = array($email,$toAdmin);
+  $subject = 'Bienvenido a Travelmate';
+
+
+    $message = '<h2>Gracias por cotizar en www.travelmate.com.co</h2>';
+
+    $message .= '<p style="color:red;">Hola; ';
+    $message .= $nombres. ' ' .$apellidos;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Email: ';
+    $message .= $email;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Continente: ';
+    $message .= $continente;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Destino: ';
+    $message .= $destino;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Ruta: ';
+    $message .= $nombre_de_ruta;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Estilo de viaje: ';
+    $message .= $estiloViaje;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Temporada: ';
+    $message .= $temporada;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Cantidad de adultos: ';
+    $message .= $adultos;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Cantidad de niños: ';
+    $message .= $ninos;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Información adicional: ';
+    $message .= $info_adicional;
+    $message .= '</p>';
+
+    $message .= '<p style="color:red;">Motivo de viaje: ';
+    $message .= $motivo_viaje;
+    $message .= '</p>';
 
   $result = wp_mail( $to,  $subject, $message,"From: Travelmate");
   if( $result ){
-    //echo "sent";
+    echo '<script> alert("Mensaje enviado")</script>';
   }else{
     //echo "fail mail";
     //echo $result;
+    //
+    //echo '<script> alert("Mensaje no fue enviado")</script>';
   }
 }
 
@@ -573,7 +643,7 @@ function my_upload_afc_vuelo()
 {
   $idImg = $_POST['id_img'];
   $idPost = $_POST['id_post'];
-  echo "<script> alert('".$idPost."')</script>";
+  //echo "<script> alert('".$idPost."')</script>";
 
   update_field("imagen_vuelo", $idImg, $idPost);
 }
@@ -586,7 +656,7 @@ function my_upload_afc_vuelo()
 {
   $idImg = $_POST['id_img'];
   $idPost = $_POST['id_post'];
-  echo "<script> alert('".$idPost."')</script>";
+  //echo "<script> alert('".$idPost."')</script>";
 
   update_field("imagenes_hoteles", $idImg, $idPost);
 }
@@ -599,13 +669,23 @@ function my_upload_afc_vuelo()
 {
   $idImg = $_POST['id_img'];
   $idPost = $_POST['id_post'];
-  echo "<script> alert('".$idPost."')</script>";
+  //echo "<script> alert('".$idPost."')</script>";
 
   update_field("imagenes_tours", $idImg, $idPost);
 }
 
  add_action('wp_ajax_my_upload_afc_tour', 'my_upload_afc_tour');
  add_action('wp_ajax_nopriv_my_upload_afc_tour', 'my_upload_afc_tour');
+
+
+ //files upload permission
+
+ if ( current_user_can('contributor') && !current_user_can('upload_files') )
+    add_action('admin_init', 'allow_contributor_uploads');
+    function allow_contributor_uploads() {
+      $contributor = get_role('contributor');
+      $contributor->add_cap('upload_files');
+}
 ?>
 
 

@@ -22,7 +22,7 @@ while(have_posts()) {
             <hr class="my-2">
             <h6 class="d-block text-white">Los precios están sujetos a cambios según las fechas, la disponibilidad y tus elecciones.</h6>
           </div>
-          <a class="btn btn-info btn-wide mb-2 mb-md-0" href="">
+          <a class="btn btn-info btn-wide mb-2 mb-md-0" href="<?php echo site_url('/inicia-tu-viaje-new/');?>">
             Inicia tu viaje
             <span class="fa fa-angle-right ml-2"></span>
           </a>
@@ -95,9 +95,9 @@ while(have_posts()) {
       //$preciosDestino = get_field('precio_destino');
       ?>
   
-  <div class="container my-5">         
+  <div class="container py-3">         
     <div class="row align-items-lg-center">          
-      <div class="col-md-6 order-md-2 mb-5 mb-md-0">
+      <div class="col-md-6 order-md-2 mb-5 mb-md-0 order-2">
         <div class="mb-2">
           <!-- Title -->
           <h3>
@@ -122,7 +122,7 @@ while(have_posts()) {
         </div>
       </div>
       <div class="col-md-6 order-md-1">
-        <div class="pr-lg-4">
+        <div class="pr-lg-4 pb-1">
           <img class="img-fluid bg-white shadow p-2" src="<?php if ( has_post_thumbnail() ) { the_post_thumbnail_url('pageDestinoCover');}?>"alt="<?php the_title_attribute()?>">
         </div>
       </div>
@@ -266,7 +266,7 @@ while(have_posts()) {
           </div>
           <div class="col-lg-3 col-md-3">
             <span class="input-group-append form__append">
-              <button type="submit" class="btn btn-block btn-info btn-wide" >Contáctanos ya</button>
+              <a class="btn btn-block btn-primary" href="<?php echo site_url('/contactenos/')?>">Contáctanos ya</a>
             </span>
           </div>     
         </div>

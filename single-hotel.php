@@ -87,6 +87,7 @@ while(have_posts()) {
     </div>
 
     <div class="py-3">
+      <?php  if (!$urlReservaHotel == NULL) {?>
       <table class="table table-bordered table-hover"style="width:100%">
         <thead>
             <tr>
@@ -107,6 +108,7 @@ while(have_posts()) {
           </tr> 
         </tbody>     
       </table>
+      <?php }?>
     </div>
   </div>
 

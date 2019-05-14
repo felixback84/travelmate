@@ -7,7 +7,7 @@ while(have_posts()) {
 <main id="content" role="main">
     <!-- Hero Section -->
     <?php $thumb2 = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'pageBannernew' );?>
-    <div class="gradient-overlay-half-dark-v3 bg-img-hero" style="background-image: url('<?php echo $thumb2['0'];?>');">
+    <div class="gradient-overlay-half-dark-v3 bg-img-hero" style="height: 50vh; background-image: url('<?php echo $thumb2['0'];?>');">
       <!-- Info -->
       <div class="container text-center space-1">
         <div class="w-lg-75 mx-lg-auto">
@@ -20,7 +20,7 @@ while(have_posts()) {
             <hr class="my-2">
             <h6 class="d-block text-white">Los precios están sujetos a cambios según las fechas, la disponibilidad y tus elecciones.</h6>
           </div>
-          <a class="btn btn-info btn-wide mb-2 mb-md-0" href="">
+          <a class="btn btn-info btn-wide mb-2 mb-md-0" href="<?php echo site_url('/como-funciona/');?>">
             Inicia tu viaje
             <span class="fa fa-angle-right ml-2"></span>
           </a>
@@ -45,7 +45,7 @@ while(have_posts()) {
 <div class="bg-gray-100">
   <div class="container space-1 space-1--lg">
     <div class="row">
-      <div class="col-lg-4 mb-7 mb-lg-0">
+      <div class="col-lg-6 mb-7 mb-lg-0">
         <!-- Features -->
         <div class="media align-items-center">
           <img class="max-width-14 mr-3" src="<?php 
@@ -64,7 +64,7 @@ while(have_posts()) {
         <!-- End Features -->
       </div>
 
-      <div class="col-lg-4 mb-7 mb-lg-0">
+      <div class="col-lg-6 mb-7 mb-lg-0">
         <!-- Features -->
         <div class="media align-items-center">
           <img class="max-width-14 mr-3" src="<?php 
@@ -83,85 +83,8 @@ while(have_posts()) {
         </div>
         <!-- End Features -->
       </div>
-
-      <div class="col-lg-4 mb-7 mb-lg-0">
-        <!-- Features -->
-        <div class="media align-items-center">
-          <img class="max-width-14 mr-3" src="<?php 
-                      $icon = wp_get_attachment_image_url('1534','banderaMini',true );
-                      echo $icon;
-                      ?>" alt="Image Description">
-          <div class="media-body">
-            <?php 
-            $valorVuelo = get_field('valor_vuelo_ruta');
-            ?>
-            <h6 style="color: #000042;" class="h6">Valor Vuelo</h6>
-            <hr class="my-1">
-            <h5 class="h5" style="color: #000042;" class="d-block"><?php echo $valorVuelo;?><span> USD</span></h5>
-          </div>
-        </div>
-        <!-- End Features -->
-      </div>
     </div>
 
-    <div class="row">
-      <div class="col-lg-4 mb-7 mb-lg-0">
-        <!-- Features -->
-        <div class="media align-items-center">
-          <img class="max-width-14 mr-3" src="<?php 
-                      $icon = wp_get_attachment_image_url('1534','banderaMini',true );
-                      echo $icon;
-                      ?>" alt="Image Description">
-          <div class="media-body">
-            <?php 
-            $valorAlojamiento = get_field('valor_alojamiento_ruta');
-            ?>
-            <h6 style="color: #000042;" class="h6">Valor Alojamiento</h6>
-            <hr class="my-1">
-            <h5 class="h5" style="color: #000042;" class="d-block"><?php echo $valorAlojamiento;?><span> USD</span></h5>
-          </div>
-        </div>
-        <!-- End Features -->
-      </div>
-
-      <div class="col-lg-4 mb-7 mb-lg-0">
-        <!-- Features -->
-        <div class="media align-items-center">
-          <img class="max-width-14 mr-3" src="<?php 
-                      $icon = wp_get_attachment_image_url('1535','banderaMini',true );
-                      echo $icon;
-                      ?>" alt="Image Description">
-          <div class="media-body">
-            <?php 
-            $valorTranslado = get_field('valor_translado_ruta');
-            ?>
-            <h6 style="color: #000042;" class="h6">Valor Translados</h6>
-            <hr class="my-1">
-            <h5 class="h5" style="color: #000042;" class="d-block"><?php echo $valorTranslado;?><span> USD</span></h5>
-          </div>
-        </div>
-        <!-- End Features -->
-      </div>
-
-      <div class="col-lg-4 mb-7 mb-lg-0">
-        <!-- Features -->
-        <div class="media align-items-center">
-          <img class="max-width-14 mr-3" src="<?php 
-                      $icon = wp_get_attachment_image_url('1534','banderaMini',true );
-                      echo $icon;
-                      ?>" alt="Image Description">
-          <div class="media-body">
-            <?php 
-            $valorActividades = get_field('valor_actividades_ruta');
-            ?>
-            <h6 style="color: #000042;" class="h6">Valor Actividades</h6>
-            <hr class="my-1">
-            <h5 class="h5" style="color: #000042;" class="d-block"><?php echo $valorActividades;?><span> USD</span></h5>
-          </div>
-        </div>
-        <!-- End Features -->
-      </div>
-    </div>
   </div>
 </div>
 <!-- End Features Section -->	
@@ -172,7 +95,7 @@ while(have_posts()) {
     	<div class="pr-lg-4">
       	<p><?php the_content();?></p>
       	<div class="mb-5"></div>
-      		<a class="btn btn-sm btn-info btn-wide" href="">Empieza ahora</a>
+      		
     		</div>
     		<!-- End Article Content -->
   	 </div>
@@ -206,7 +129,7 @@ while(have_posts()) {
       </div>
       <div class="col-lg-3 col-md-3">
         <span class="input-group-append form__append">
-          <button type="submit" class="btn btn-block btn-info btn-wide" >Contáctanos ya</button>
+          <a class="btn btn-block btn-primary" href="<?php echo site_url('/contactenos/')?>">Contáctanos ya</a>
         </span>
       </div>     
     </div>
@@ -246,7 +169,8 @@ while(have_posts()) {
 		       <div class="col-7">
 			        <div class="p-5">
                 <h3 style="color: #000042;" class="d-block"><?php echo $nombreDia;?></h3>
-                <p> <?php echo $DescripcionDia;?> </p>
+                
+                <p><?php echo wp_trim_words($DescripcionDia, 12);?></p>
                 <hr class="my-1">
                 <ul class="list-inline text-secondary">
 			                	

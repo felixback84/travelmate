@@ -9,9 +9,9 @@ get_header();
   <!-- ========== MAIN CONTENT ========== -->
   <main id="content" role="main">
     <!-- Checkout Form Section -->
-    <div class="container space-2 space-1-top--lg space-3-bottom--lg">
+    <div class="container py-3">
       <div class="row">
-        <div class="col-lg-4 order-lg-2 mb-9 mb-lg-0">
+        <div class="col-lg-4 order-lg-2 mb-lg-0 order-2">
           <!-- ========== Tabla ========== -->
           <?php my_get_posts2(); ?>
           <!-- ========== end Tabla ========== -->
@@ -337,7 +337,7 @@ get_header();
                 <div class="js-form-message mb-6">
                   <label class="h6 small d-block text-uppercase">
                     Motivo del viaje
-                    <span class="text-danger">*</span>
+                    
                   </label>
 
                   <div class="js-focus-state input-group form">
@@ -350,28 +350,35 @@ get_header();
                 <!-- End Input -->
               </div>
               <!-- End Input -->
-            </div>
-            <!-- end datos viaje 4-->
-
-            <!-- Credit Card -->
-            <div class="row">
-              <div id="cotizar">
-                <button type="button" class="btn btn-outline btn-wide btn-info mb-6" onclick="cotizarValores()">
-                  Cotizar ya
-                </button>
-              </div>
-            </div>
-            <!-- End Credit Card -->
+            </div> 
           </form>
-          <!-- End Checkout Form -->
         </div>
       </div>
     </div>
     <!-- End Checkout Form Section -->
     <div id="mostrar" ></div>
     <span id="vuelo"></span>
+
+    <div class="container">
+      <div class="row">
+      <!-- end datos viaje 4-->
+        <div class="col-md-8">
+          <div class="g-recaptcha" data-sitekey="6LewFKEUAAAAAEd1D9cJ8xLHkFzetqIkWOR3HsVN">
+          </div>
+          <!-- Credit Card --> 
+          <div id="cotizar" class="pt-1">
+            <button type="button" class="btn btn-outline btn-block btn-info mb-6" onclick="cotizarValores()">
+              Cotizar ya
+            </button>
+          </div>
+        </div>
+        <!-- End Credit Card -->
+      <!-- End Checkout Form -->
+      </div>
+    </div>
   </main>
   <!-- ========== END MAIN CONTENT ========== -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript">
 
   $(function () {
